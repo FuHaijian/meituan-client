@@ -1,0 +1,37 @@
+.tabbar-warpper {
+    position: fixed;
+    display: flex;
+    width: 375px;
+    height: 53px;
+    bottom: 0px;
+    background-color: white;
+    flex-wrap: wrap;
+    z-index: 10;
+}
+.tabbar-warpper li {
+    list-style: none;
+    text-align: center;
+}
+.tabbar-warpper__item {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tabbar-wrapper__item-link {
+    width: 93px;
+    height: 53px;
+}
+.icon {
+    margin-top: 5px;
+    width: 25px;
+    height: 25px;
+}
+.desc {
+    /* padding-top: 3px; */
+    color: #696969;
+    font-weight: 700;
+    width: auto;
+    flex: 1;
+}

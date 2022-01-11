@@ -1,0 +1,21 @@
+.swiper-slide {
+    width: 60px !important;
+    margin-right: 15px;
+}
+.swiper-wrapper {
+    padding: 6px;
+    /* height: 120px; */
+    /* display: flex; */
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.item-box__img {
+    height: 50px;
+    width: 50px;
+    border-radius: 40px;
+}
+
+.item-box__text {
+    font-size: 10px;
+}
