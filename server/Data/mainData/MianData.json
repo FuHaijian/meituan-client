@@ -24,26 +24,125 @@
                 "id":5,
                 "picUrl":"https://images.daojia.com/dop/custom/01a443c96c08e02cd32ddd9958f82292.png",
                 "type":"酒水乳饮"
-            },
+            }
+        ],
+        "list2": [
             {
                 "id":6,
                 "picUrl":"https://images.daojia.com/dop/custom/4847e41c9c4c23b11c252815df12d42a.png?x-oss-process=image/auto-orient,0/format,webp",
-                "type":"省钱卡"
+                "type":"肉禽蛋水产"
             },{
                 "id":7,
                 "picUrl":"https://images.daojia.com/dop/custom/64b0a24bebec5e986b7523d24f38c9e8.png",
-                "type":"邀请赚钱"
+                "type":"个护清洁"
             },
             {
                 "id":8,
                 "picUrl":"https://images.daojia.com/dop/custom/9b04c448bf5a2e53407227abb39b27dc.png",
-                "type":"天天赚鸡蛋"
+                "type":"花卉绿植"
             },
             {
                 "id":9,
                 "picUrl":"https://images.daojia.com/dop/custom/c16a42b496dad271fc602eae789ce1bf.png",
-                "type":"签到领钱"
+                "type":"省钱卡"
+            },
+            {
+                "id":10,
+                "picUrl":"https://images.daojia.com/dop/custom/64b0a24bebec5e986b7523d24f38c9e8.png",
+                "type":"邀请赚钱"
             }
+        ],
+        "list3": [
+            {
+                "id":11,
+                "picUrl":"https://images.daojia.com/dop/custom/9b04c448bf5a2e53407227abb39b27dc.png",
+                "type":"天天赚鸡蛋"
+            },
+            {
+                "id":12,
+                "picUrl":"https://images.daojia.com/dop/custom/c16a42b496dad271fc602eae789ce1bf.png",
+                "type":"签到领钱"
+            },
+            {
+                "id":13,
+                "picUrl":"https://images.daojia.com/dop/custom/64b0a24bebec5e986b7523d24f38c9e8.png",
+                "type":"边玩边赚"
+            }
+        ],
+        "list4": [
+            {
+                "id":14,
+                "picUrl":"https://images.daojia.com/dop/custom/9b04c448bf5a2e53407227abb39b27dc.png",
+                "type":"冷淡食品"
+            },
+            {
+                "id":15,
+                "picUrl":"https://images.daojia.com/dop/custom/c16a42b496dad271fc602eae789ce1bf.png",
+                "type":"日用百货"
+            }
+        ]
+    },
+    "specialGoodsData": {
+        "activity1": {
+            "title": "特价菜场",
+            "icon": "",
+            "icon_desc": "新鲜特惠",
+            "goods": [
+                {
+                    "id": 8989,
+                    "price": "5.99",
+                    "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                },
+                {
+                    "id": 8888,
+                    "price": "5.99",
+                    "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                }
+            ]
+        },
+        "activity2": {
+            "title": "新年焕新日",
+            "icon": "",
+            "icon_desc": "满29减4",
+            "goods": [
+                {
+                    "id": 7878,
+                    "price": "9.99",
+                    "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                },
+                {
+                    "id": 7676,
+                    "price": "13.99",
+                    "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                }
+            ]
+        }
+    },
+    "SnapUpGoodsData": {
+        "title": "秒杀特价",
+        "time": "07:32:22",
+        "goods": [
+            {
+                "id": 7878,
+                "price": "10.99",
+                "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+            },
+            {
+                "id": 7676,
+                "price": "1.99",
+                "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+            },
+            {
+                "id": 7875,
+                "price": "6.99",
+                "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+            },
+            {
+                "id": 7674,
+                "price": "3.99",
+                "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+            }
+
         ]
     }
 }

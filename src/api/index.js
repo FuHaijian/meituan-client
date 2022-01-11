@@ -4,3 +4,7 @@ import Axios from './axios'
 export const reqmain = () => {
     return Axios('/home/main')
 }
+
+export const reqlist = (page) => {
+    return Axios('/home/list', {page})
+}

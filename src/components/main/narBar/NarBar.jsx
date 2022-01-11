@@ -19,7 +19,7 @@ const NarBar = (props) => {
                 </div>
             </div>
             <div className="navBar__news">
-                <img src={NewIcon} alt="" />
+                <img src={NewIcon} />
             </div>
         </div>
     )

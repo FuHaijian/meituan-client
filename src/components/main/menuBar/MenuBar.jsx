@@ -6,31 +6,34 @@ import MenuBarItem from './menuBarItem/MenuBarItem';
 import './MenuBar.css'
 
 const MenuBar = (props) => {
-    const { menuBarData={list1:[], list2: []} } = props
+    const { menuBarData={} } = props
 
     useEffect(() => {
         new Swiper('.swiper',{
-            slidesPerView: 3,
-            grid: {
-              fill: 'column',
-              rows: 2,
-            },
+            direction:'horizontal',
+            scrollbar: {
+                el: '.swiper-scrollbar',
+              },
           })
     }, [])
     return (
-        <div className="swiper">
-            <div className="swiper-wrapper">
-                {
-                    menuBarData.list1.map(item => 
-                        <div className="swiper-slide" role="group" key={item.id}>
-                            <img src={item.picUrl} alt="" className="item-box__img" />
-                            <div className="item-box__text">{item.type}</div>
-                        </div>
-                    )
-                }   
+        <div className="swiper-bg">
+            <div className="swiper-region">
+                <div className="swiper">
+                    <div className="swiper-wrapper">
+                            <div className="swiper-slide">
+                                <MenuBarItem menuBarData={menuBarData.list1}/>
+                                <MenuBarItem menuBarData={menuBarData.list2}/>
+                            </div>
+                            <div className="swiper-slide">
+                                <MenuBarItem menuBarData={menuBarData.list3}/>
+                                <MenuBarItem menuBarData={menuBarData.list4}/>
+                            </div>
+                    </div>
+                    <div className="swiper-scrollbar"></div>
+                </div>
             </div>
         </div>
-            
     )
 }
 

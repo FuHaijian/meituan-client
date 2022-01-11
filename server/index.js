@@ -3,6 +3,8 @@ const router = require('koa-router')();
 const app = new Koa()
 const MainData = require('./Data/mainData/MianData.json')
 const cors = require('koa2-cors')
+const Mock = require('mockjs')
+const Random = Mock.Random
 
 app.use(cors({
     origin: function(ctx) { //设置允许来自指定域名请求
@@ -21,6 +23,26 @@ router.get('/home/main', async (ctx) => {
     ctx.response.body = {
         success: true,
         data: MainData
+    }
+})
+router.get('/home/list', async(ctx) => {
+    // 参数
+    let { limit = 20, page = 1} = ctx.request.query
+    let data = Mock.mock({
+        'list|20': [{
+            'title': '@ctitle(15, 20)',
+            'activites|0-1': "@ctitle(3, 5)",
+            "tags|1-2": ["@ctitle(2,3)"],
+            'imgsrc': Random.image('168x168'),
+            "tradeDescription": "@ctitle(4,7)",
+            'id|+1': 1,
+            "price|2-30.2": 2 
+        }]
+    })
+
+    ctx.body = {
+        success: true,
+        data
     }
 })
 

@@ -1,0 +1,51 @@
+.activity__container {
+    height: 70px;
+    flex: 1;
+    background-color: #fff;
+    margin-right: 2px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.activity__header {
+    font-size: 14px;
+    font-weight: 700;
+    display: inline;
+}
+.icon-desc {
+    font-size: 9px;
+    border: 1px solid #f77300;
+    background-color: #f77300;
+    border-radius: 5px;
+    margin-left: 10px;
+    display: inline;
+}
+.icon-desc img {
+    width: 15px;
+    height: 15px;
+    margin-bottom: -3px;
+}
+.icon-desc .desc {
+    color: #fff;
+    padding: 0 2px;
+    display: inline;
+}
+.activity__goods {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+.activity__goods__item {
+    flex: 1;
+    /* background-color: pink; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.item__img {
+    width: 40px;
+    height: 40px;
+}

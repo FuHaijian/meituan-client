@@ -1,10 +1,12 @@
-import React from "react";
+import React from "react"
 
 import './MenuBarItem.css'
 
 const MenuBarItem = (props) => {
-    const { menuBarData } = props
-    console.log(menuBarData);
+    const { menuBarData=[] } = props
+    const handleclick = (type) => {
+        
+    }
     return (
         <div className='menu-item__box'>
             {

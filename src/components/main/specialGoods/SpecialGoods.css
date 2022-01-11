@@ -1,0 +1,7 @@
+.SpecialGoods {
+    display: flex;
+    background-color: #f5f8f8;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 0 10px;
+}
