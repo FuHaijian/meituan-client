@@ -1,0 +1,60 @@
+.container {
+    height: 30px;
+    width: 100%;
+    background-color: #fff;
+    /* border: 1px solid #000; */
+    border: none;
+    padding: 8px;
+    position: fixed;
+    bottom: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+.container__shoppingIcon {
+    height: 100%;
+    width: 50px;
+    margin-left: 20px;
+    padding-top: 5px;
+    position: relative;
+}
+.container__shoppingIcon img{
+    width: 25px;
+    height: 25px;
+}
+.container__numIcon {
+    position: absolute;
+    top: 0;
+    right: 18px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    line-height: 15px;
+    background-color: #fd3200;
+    text-align: center;
+    color: #fff;
+    font-weight: 700;
+}
+.container__buttom {
+    flex:1;
+    height: 100%;
+    border-radius: 20px;
+    background-color: #ffd200;
+    line-height: 30px;
+    margin-right: 20px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+}
+
+.container__buttom_totalAmount, .container__buttom_desc {
+    flex: 1;
+}
+.container__buttom_totalAmount {
+    text-align: right;
+    padding-right: 10px;
+}
+.container__buttom_desc {
+    text-align: left;
+}

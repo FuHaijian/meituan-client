@@ -8,7 +8,7 @@ const Tag = styled.div`
     color #ff190c;
     font-weight 700;
     display inline;
-    padding 1px;
+    padding 0 2px;
     border-radius 5px;
     position absolute;
 `
@@ -16,7 +16,7 @@ const Tag = styled.div`
 const PriceTag = (props) => {
     const { bottom, left, price } = props
     return (
-        <Tag style={{bottom:`${bottom}`, left: `${left}`}}>
+        <Tag style={{bottom:`${bottom}px`, left: `${left}px`}}>
             ￥{price}
         </Tag>
     )

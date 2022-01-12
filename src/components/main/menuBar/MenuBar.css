@@ -1,6 +1,6 @@
 .swiper-bg {
     background-image: linear-gradient(to bottom, #ffd202, #fdd62b, #fcda41, #fade54, #f9e264, #eaea79, #def08f, #d5f5a5, #c8fac7, #cafce3, #dbfbf4, #f5f8f8);
-    /* margin-top: 100px; */
+    margin-bottom: 10px;
 }
 .swiper-region {
     background-color: #fff;
@@ -8,7 +8,6 @@
     width: 355px;
     margin: 0 10px;
     overflow: hidden;
-    /* padding-top: 10px; */
     position: relative;
 }
 .swiper-wrapper {

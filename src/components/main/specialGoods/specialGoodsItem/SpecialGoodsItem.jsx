@@ -21,7 +21,7 @@ const SpecialGoodsItem = (props) => {
                     goods.map(item  =>
                         <div className="activity__goods__item" key={item.id}>
                             <img className="item__img" src={item.imgsrc} alt="" />
-                            <PriceTag price={item.price} bottom={"-8px"} left={"15px"}/>
+                            <PriceTag price={item.price} bottom={-8} left={15}/>
                         </div>
                     )
                 }

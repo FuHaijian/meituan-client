@@ -3,10 +3,12 @@ import Scroll from '@/baseUI/scroll'
 import { connect } from 'react-redux'
 import * as actionTypes from './store/actionCreators'
 import MenuBar from '@/components/main/menuBar/MenuBar'
-import NarBar from '@/components/main/narBar/NarBar'
+import NavBar from '@/components/main/navBar/NavBar'
 import GoodsList from '@/components/main/goodsList/GoodsList'
 import SnapUpGoods from '@/components/main/snapUpGoods/SnapUpGoods'
 import SpecialGoods from '@/components/main/specialGoods/SpecialGoods'
+import MenuBar_Top from '@/components/main/menuBar/menuBar_Top/MenuBar_Top'
+import ShoppingCartComponent from '@/components/shoppingCartComponent/ShoppingCartComponent'
 
 import { useHistory } from 'react-router-dom'
 import * as api from '@/api'
@@ -16,15 +18,25 @@ import './Main.css'
 
 const Main = (props) => {
     // 状态
-    const { mainData } = props
-    const { menuBarData, specialGoodsData } = mainData
+    const { mainData, selectedGoods, totalAccount } = props
+    const { 
+        menuBarData={"list1":[],"list2":[],"list4":[]}, 
+        specialGoodsData, 
+        SnapUpGoodsData
+    } = mainData
+    const menuBar_TopData = [...menuBarData.list1, ...menuBarData.list4, ...menuBarData.list2]
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
-    const [display, setDisplay] = useState(false)
+    const [navBarFixed, setNavBarFixed] = useState(false)
+    const [menuBarFixed, setMenuBarFixed] = useState(false)
+    
     // actions 
-    const { getMainDataDispatch } = props
+    const { 
+        getMainDataDispatch, 
+        getSelectedGoodsDisPatch:setCartInfo,
+        getTotalAccountDispatch:setTotalAccount
+    } = props
     const history = useHistory()
-
     const fetchList = () => {
         api.reqlist(page)
             .then(res => {
@@ -49,7 +61,6 @@ const Main = (props) => {
     }, [page])
     return (
         <div className='main'>
-           
             <Scroll
                 direction="vertical"
                 refresh={false}
@@ -57,10 +68,15 @@ const Main = (props) => {
                 pullDown={handlePullDown}
                 onScroll={
                     (e) => {
-                        if (e.y < -1142) {
-                            setDisplay(true)
+                        if (e.y < -30) {
+                            setNavBarFixed(true)
                         } else {
-                            setDisplay(false)
+                            setNavBarFixed(false)
+                        }
+                        if (e.y < -100) {
+                            setMenuBarFixed(true)
+                        } else {
+                            setMenuBarFixed(false)
                         }
                         forceCheck()
                     }
@@ -68,26 +84,50 @@ const Main = (props) => {
             >
                 <div>
                      {/* 头部 */}
-                    <NarBar goToSearch={() => history.push('/search')} />
+                    <NavBar goToSearch={() => history.push('/search')} navBarFixed={navBarFixed}/>
                     {/* 商品分类及活动入口 */}
                     <MenuBar menuBarData={menuBarData} />
                     <div className='main-padding'>
                         {/* 秒杀特价 */}
-                        <SnapUpGoods />
+                        <SnapUpGoods SnapUpGoodsData={SnapUpGoodsData} />
                         {/* 特价商品 */}
                         <SpecialGoods SpecialGoodsData={specialGoodsData} />
                         {/* 商品列表 */}
-                        <GoodsList GoodsListData={list} />
+                        <GoodsList 
+                            GoodsListData={list} 
+                            setCartInfo={setCartInfo} 
+                            selectedGoods={selectedGoods}
+                            totalAccount={totalAccount}
+                            setTotalAccount={setTotalAccount}
+                        />
                     </div>
                 </div>
             </Scroll>
+            {/* 头部悬挂组件 */}
+            <div style={navBarFixed?{visibility:"visible"}:{visibility:"hidden"}}>
+                <NavBar goToSearch={() => history.push('/search')} navBarFixed={navBarFixed}/>
+            </div>
+            <div style={menuBarFixed?{visibility:"visible"}:{visibility:"hidden"}}>
+                <MenuBar_Top menuBarData={menuBar_TopData} menuBarFixed={menuBarFixed}/>
+            </div>
+            {/* 购物车组件 */}
+            <ShoppingCartComponent 
+                selectedGoods={selectedGoods} 
+                setCartInfo={setCartInfo} 
+                totalAccount={totalAccount}
+                setTotalAccount={setTotalAccount}
+                goToCart={() => history.push('/home/shoppingcart')}
+            />
+
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        mainData: state.main.maindata
+        mainData: state.main.maindata,
+        selectedGoods: state.main.selectedGoods,
+        totalAccount: state.main.totalAccount
     }
 
 }
@@ -95,6 +135,12 @@ const mapStateToDisPatch = (dispatch) => {
     return {
         getMainDataDispatch() {
             dispatch(actionTypes.getMainData())
+        },
+        getSelectedGoodsDisPatch(goodsList) {
+            dispatch(actionTypes.setSelectedGoods(goodsList))
+        },
+        getTotalAccountDispatch(totalAccount) {
+            dispatch(actionTypes.setTotalAccount(totalAccount))
         }
     }
 }

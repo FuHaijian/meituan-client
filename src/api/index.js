@@ -8,3 +8,7 @@ export const reqmain = () => {
 export const reqlist = (page) => {
     return Axios('/home/list', {page})
 }
+
+export const reqshoppingcart = () => {
+    return Axios('/home/shoppingcart')
+}

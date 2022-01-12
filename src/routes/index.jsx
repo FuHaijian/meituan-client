@@ -51,7 +51,6 @@ export default [{
                     component: SuspenseComponent(My)
                 }
             ]
-            
         },
         {
             path: '/search',

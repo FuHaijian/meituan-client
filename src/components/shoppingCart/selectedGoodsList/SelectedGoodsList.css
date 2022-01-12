@@ -1,0 +1,34 @@
+.container-empty_cart {
+    width: 100%;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+}
+.empty_cart__icon {
+    width: 120px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+.empty_cart__desc {
+    color: #959596;
+    margin-bottom: 10px;
+}
+.empty_cart__button {
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 20px;
+    background-color: #ffd200;
+}
+
+.container-goodsList {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}

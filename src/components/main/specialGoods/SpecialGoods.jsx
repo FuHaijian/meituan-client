@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PriceTag from "../../../common/priceTag/priceTag";
 import SpecialGoodsItem from './specialGoodsItem/SpecialGoodsItem.jsx'
 
 import './SpecialGoods.css'

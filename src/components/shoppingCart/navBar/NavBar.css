@@ -1,0 +1,18 @@
+.navBar__container {
+    height: 30px;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+}
+
+.navBar__container-fixed {
+    position: fixed;
+    top: 0;
+}
+
+.navBar__container-title {
+    height: 100%;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 700;
+}

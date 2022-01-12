@@ -1,0 +1,31 @@
+.menuBar {
+    width: 100vw;
+    height: 60px;
+    background-color: #fff;
+}
+
+.menuBar-fixed {
+    position: fixed;
+    top: 50px;
+    z-index: 10;
+}
+
+.menuBar__container {
+    display: flex;
+    padding: 5px;
+    white-space: nowrap;
+    overflow: scroll;
+}
+
+.menuBar__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+.menuBar__item img {
+    width: 35px;
+    height: 35px;
+}
+

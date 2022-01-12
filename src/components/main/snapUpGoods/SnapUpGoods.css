@@ -1,0 +1,43 @@
+.snapUpGoods-container {
+    height: 70px;
+    margin: 0 10px;
+    background-color: #fff;
+    display: flex;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 10px;
+}
+.container__desc {
+    height: 100%;
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #f0f0f1;
+    padding-right: 10px;
+}
+.container__desc-title {
+    font-weight: 700;
+    font-size: 13px;
+}
+.container__desc-icon img {
+    width: 30px;
+    height: 30px;
+}
+.container__goodsList {
+    display: flex;
+    flex: 1;
+    padding: 10px;
+}
+.container__goodsList-item {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.container__goodsList-item img {
+    width: 50px;
+    height: 50px;
+}

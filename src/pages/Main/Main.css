@@ -3,5 +3,5 @@ body {
     background-color: #f5f8f8;
 }
 .main {
-    height: 100vh;
+    height: calc(100vh + 50px  );
 }
