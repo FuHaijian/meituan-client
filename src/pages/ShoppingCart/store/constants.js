@@ -1,1 +1,0 @@
-export const CHANGE_GOODSDATA = 'CHANGE_GOODSDATA';

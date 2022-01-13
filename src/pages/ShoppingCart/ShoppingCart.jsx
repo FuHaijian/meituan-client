@@ -2,84 +2,75 @@ import React, { memo, useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { useHistory } from "react-router-dom"
 import Scroll from '@/baseUI/scroll'
-import * as cartActionTypes from './store/actionCreators'
 import * as mainActionType from '../Main/store/actionCreators'
 import NavBar from '@/components/shoppingCart/navBar/NavBar.jsx'
-import RecommendedGoodsList from '@/components/recommendedGoodsList/RecommendedGoodsList'
+import RecommendList from '@/components/recommendList/RecommendList'
 import SelectedGoodsList from '@/components/shoppingCart/selectedGoodsList/SelectedGoodsList'
+import { forceCheck } from "react-lazyload"
 
 import './ShoppingCart.css'
+import { reqrecommend } from "@/api"
 
 const ShoppingCart = (props) => {
     // state 
-    const { shoppingdata, selectedGoods } = props
-    const [navBarFixed, setNavBarFixed] = useState(false)
+    const { selectedGoods } = props
+    let [page, setPage] = useState(1)
+    const [list, setList] = useState([])
     // action 
-    const { getShoppingDataDispatch, getSelectedGoodsDisPatch: setCartInfo } = props
+    const { getSelectedGoodsDisPatch: setCartInfo } = props
     const history = useHistory()
     // 上拉加载更多
     const handlePullUp = () => {
-        // console.log('----');
+        setPage(++page)
     }
     // 下拉刷新
     const handlePullDown = () => {
         // console.log('+++++');
     }
+    const getRecommendListData = async() => {
+        await reqrecommend()
+            .then(res => {
+                setList([...list, ...res.data.data.list])
+            })
+    }
     useEffect(() => {
-        if (!shoppingdata.length) {
-            getShoppingDataDispatch()
-        }
-    }, [])
+        getRecommendListData()
+    }, [page])
     return (
         <div className="cart__container">
-                <Scroll
-                    direction="vertical"
-                    refresh={false}
-                    pullUp={handlePullUp}
-                    pullDown={handlePullDown}
-                    onScroll={(e) => {
-                        if(e.y < -60) {
-                            setNavBarFixed(true)
-                        }else {
-                            setNavBarFixed(false)
-                        }
-                    }}
-                >
-                    <div>
-                    <NavBar />
-                    <div className="cart__container-padding">
-                        {/* 已选商品列表 */}
-                        <SelectedGoodsList 
-                            selectedGoodsData={selectedGoods} 
-                            setCartInfo={setCartInfo}
-                            goToShopping={() => history.push('/home/main')}
-                        />
-                        {/* 商品推荐 */}
-                        <RecommendedGoodsList />
-                        <div className="enpty"></div>
-                        </div>
-                    </div>
-                </Scroll>
-                <div style={navBarFixed?{display:""}:{display:"none"}}>
-                    <NavBar navBarFixed={navBarFixed} />
+            <NavBar />
+            <Scroll
+                direction="vertical"
+                refresh={false}
+                pullUp={handlePullUp}
+                pullDown={handlePullDown}
+                onScroll={() => {
+                    forceCheck()
+                }}
+            >
+               <div> 
+                    {/* 已选商品列表 */}
+                    <SelectedGoodsList
+                        selectedGoodsData={selectedGoods}
+                        setCartInfo={setCartInfo}
+                        goToShopping={() => history.push('/home/main')}
+                    />
+                    {/* 商品推荐 */}
+                    <RecommendList recommendList={list}/> 
                 </div>
-                
+            </Scroll>
         </div>
     )
 }
 
 const mapStateToProps = (states) => {
     return {
-        shoppingdata: states.shoppingcart.shoppingdata,
         selectedGoods: states.main.selectedGoods
     }
 }
 
 const mapStateToDispatch = (dispatch) => {
     return {
-        getShoppingDataDispatch() {
-            dispatch(cartActionTypes.getShoppingData())
-        },
         getSelectedGoodsDisPatch(GoodsList) {
             dispatch(mainActionType.setSelectedGoods(GoodsList))
         }

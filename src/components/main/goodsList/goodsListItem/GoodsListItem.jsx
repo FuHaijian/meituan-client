@@ -1,8 +1,8 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
 import { floatAdd, floatSub} from '@/api/utils.js'
+import loading from '@/assets/images/loading.gif'
 
-import './GoodsListItem.style'
 import './GoodsListItem.css'
 
 const GoodsListItem = (props) => {
@@ -16,7 +16,12 @@ const GoodsListItem = (props) => {
     }
     return (
         <div className={(index+1)%2 === 0?"right-card":"left-card"}>
-            <LazyLoad>
+            <LazyLoad
+                height={100} 
+                placeholder={
+                    <img height="100%" width="100%" 
+                    src={loading}/>}
+            >
                 <img src={good.imgsrc} />
             </LazyLoad>
             <div className="card__description">

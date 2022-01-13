@@ -1,6 +1,6 @@
-import * as actionTypes from './constants';
-
+import * as actionTypes from './constants'
 const defaultstate = {
+
 }
 
 const reducer = (state = defaultstate, action) => {
@@ -9,4 +9,5 @@ const reducer = (state = defaultstate, action) => {
             return state;
     }
 }
-export default reducer;
+
+export default reducer

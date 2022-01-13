@@ -35,10 +35,8 @@
 }
 .description__title-tags {
     height: 14px;
-    /* width: auto; */
     background-color: #ff1c00;
     display: inline;
-    /* font-weight: 700; */
     padding: 1px;
     margin-right: 4px;
     color: #fff;

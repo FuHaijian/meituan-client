@@ -1,0 +1,11 @@
+.recommend__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+.recommend__container_title {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+}

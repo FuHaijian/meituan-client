@@ -104,10 +104,10 @@ const Main = (props) => {
                 </div>
             </Scroll>
             {/* 头部悬挂组件 */}
-            <div style={navBarFixed?{visibility:"visible"}:{visibility:"hidden"}}>
+            <div style={navBarFixed?{display:""}:{display:"none"}}>
                 <NavBar goToSearch={() => history.push('/search')} navBarFixed={navBarFixed}/>
             </div>
-            <div style={menuBarFixed?{visibility:"visible"}:{visibility:"hidden"}}>
+            <div style={menuBarFixed?{display:""}:{display:"none"}}>
                 <MenuBar_Top menuBarData={menuBar_TopData} menuBarFixed={menuBarFixed}/>
             </div>
             {/* 购物车组件 */}

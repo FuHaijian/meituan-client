@@ -1,5 +1,5 @@
 import React from "react";
-import NewIcon from '@/assets/navbarImg/news.png'
+import NewsIcon from '@/assets/navbarImg/news.png'
 import searchIcon from '@/assets/navbarImg/search.png'
 import { Link } from "react-router-dom";
 
@@ -19,7 +19,7 @@ const NarBar = (props) => {
                 </div>
             </div>
             <div className="navBar__news">
-                <img src={NewIcon} />
+                <img src={NewsIcon} />
             </div>
         </div>
     )

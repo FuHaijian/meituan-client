@@ -4,14 +4,15 @@
     background-color: #fff;
     margin-bottom: 10px;
     display: flex;
-    padding: 10px;
+    padding: 10px 0;
+    position: relative;
 }
 .selectedGoodsItem__selectButton {
     height: 100%;
     width: 50px;
     position: relative;
 }
-.selected {
+.isSelected {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -19,8 +20,17 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: #ffd200;
-
+    box-sizing: border-box;
+}
+.isSelected .noSeleted {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border:1px solid #939695;
+}
+.isSelected img {
+    width: 20px;
+    height: 20px;
 }
 .selectedGoodsItem__img {
     width: 90px;
@@ -39,17 +49,46 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    /* background-color: green; */
     margin-left: 10px;
     padding-right: 10px;
 }
 .selectedGoodsItem__goodsInfo_title {
     font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
 }
 .selectedGoodsItem__goodsInfo_title .tag {
     background-color: #ff3d00;
+    display: inline;
     border-radius: 3px;
     height: 13px;
-    padding: 1px;
+    padding: 0 2px;
+    margin-right: 5px;
+    color: #fff;
 }
-
+.selectedGoodsItem__goodsInfo_trade {
+    color: #939695;
+}
+.selectedGoodsItem__goodsInfo_price {
+    font-weight: 700;
+    color: #ec0008;
+    font-size: 13px;
+    margin-top: 15px;
+}
+.selectedGoodsItem__goodsInfo_buttom {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    height: 25px;
+    width: 80px;
+    display: flex;
+}
+.goodsNum {
+    font-size: 13px;
+    font-weight: 700;
+}
+.addButtom, .subButtom {
+    width: 23px;
+    height: 23px;
+    margin: 0 7px;
+}
