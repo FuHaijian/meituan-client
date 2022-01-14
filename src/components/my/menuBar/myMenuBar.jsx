@@ -3,7 +3,7 @@ import Swiper from 'swiper';
 import "swiper/css/swiper.min.css";
 import MenuBarItem from './menuBarItem/MenuBarItem';
 
-import './MenuBar.css'
+import './myMenuBar.css'
 
 const MenuBar = (props) => {
     const { menuBarData={} } = props
@@ -16,8 +16,8 @@ const MenuBar = (props) => {
           })
     }, [])
     return (
-        <div className="swiper-bg">
-            <div className="swiper-region">
+        <div className="swiper-bg-my">
+            <div className="swiper-region-my">
                 <div className="swiper">
                     <div className="swiper-wrapper">
                             <div className="swiper-slide">

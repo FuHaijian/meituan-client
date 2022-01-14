@@ -12,3 +12,15 @@ export const reqlist = (page) => {
 export const reqrecommend = () => {
     return Axios('/home/recommend')
 }
+
+export const reqmypagedata = () => {
+    return Axios('/home/my')
+}
+
+export const reqclassify = () => {
+    return Axios('/home/classify')
+}
+
+export const reqclassifygoodsdata = (page, type) => {
+    return Axios('/home/classify/goodsData', {page, type})
+}

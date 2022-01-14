@@ -9,7 +9,6 @@ const SelectedGoodsItem = (props) => {
     const { goodData={} } = props
     const [i, setI] = useState(1)
     let [num, setNum] = useState(1)
-    // console.log(goodData, '-----');
     return (
         <div className="selectedGoodsItem">
             <div className="selectedGoodsItem__selectButton">

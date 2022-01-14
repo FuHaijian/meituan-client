@@ -9,8 +9,9 @@ const Search = () => {
         <>
             <div className="page">
                 <div className="back" onClick={() => history.goBack()}></div>
-                返回
+                返回　　To be continue...
             </div>
+            
         </>
     )
 }

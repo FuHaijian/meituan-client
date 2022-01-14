@@ -1,16 +1,30 @@
 import React, { useEffect, useState, memo } from "react"
 import { reqrecommend } from '@/api'
+import * as myActions from './store/actionCreators'
+import * as mainActions from '../Main/store/actionCreators'
 import { connect } from "react-redux"
 import Scroll from '@/baseUI/scroll'
 import { forceCheck } from "react-lazyload"
 import RecommendList from '@/components/recommendList/RecommendList'
 import HeaderComponent from '@/components/my/headerComponent/HeaderComponent'
+import UserBenefits from '@/components/my/userBenefits/UserBenefits'
+import OrdersOprationButtom from '@/components/my/ordersOprationButtom/OrdersOprationButtom'
+import Menubar from '@/components/my/menuBar/myMenuBar'
 
 import './My.css'
 
 const My = (props) => {
+    // state 
+    const { myPageData, totalAccount, selectedGoods } = props
+    const { menuBarData, OrdersOprationButtomData } = myPageData 
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
+    // action 
+    const { 
+        getMyPageDataDispatch,
+        getSelectedGoodsDisPatch: setCartInfo,
+        getTotalAccountDispatch: setTotalAccount
+    } = props
     const handlePullUp = () => {
         setPage(++page)
     }
@@ -23,6 +37,11 @@ const My = (props) => {
             setList([...list, ...res.data.data.list])
         })
     }
+    useEffect(() => {
+        if(!myPageData.length) {
+            getMyPageDataDispatch()
+        }
+    }, [])
     useEffect(() => {
         getRecommendListData()
     }, [page])
@@ -39,17 +58,44 @@ const My = (props) => {
             >
                 <div>
                     <HeaderComponent />
-                    <RecommendList recommendList={list}/>
+                    <UserBenefits />
+                    <div className="padding">
+                        <OrdersOprationButtom ButtomData={OrdersOprationButtomData}/>
+                        <Menubar  menuBarData={menuBarData}/>
+                    </div>
+                    <RecommendList 
+                        recommendList={list} 
+                        selectedGoods={selectedGoods}
+                        totalAccount={totalAccount}
+                        setCartInfo={setCartInfo}
+                        setTotalAccount={setTotalAccount}
+                    /> 
                 </div>
             </Scroll>
         </div>
     )
 } 
 
-const mapStateToProps = () => {
+const mapStateToProps = (state) => {
     return {
-
+        myPageData: state.my.myPageData,
+        totalAccount: state.main.totalAccount,
+        selectedGoods: state.main.selectedGoods
     }
 }
 
-export default connect(mapStateToProps, {})(memo(My))
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getMyPageDataDispatch() {
+            dispatch(myActions.getMyPageData())
+        },
+        getSelectedGoodsDisPatch(GoodsList) {
+            dispatch(mainActions.setSelectedGoods(GoodsList))
+        },
+        getTotalAccountDispatch(account) {
+            dispatch(mainActions.setTotalAccount(account))
+        }
+    }
+} 
+
+export default connect(mapStateToProps, mapDispatchToProps)(memo(My))

@@ -6,7 +6,7 @@ import './ShoppingCartComponent.css'
 const shoppingCartComponent = (props) => {
     const { selectedGoods=[], totalAccount } = props
 
-    const { setTotalAccount, setCartInfo, goToCart } = props
+    const { goToCart } = props
 
     return (
         <div className="container" style={selectedGoods.length?{display:""}:{display:"none"}}>

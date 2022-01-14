@@ -1,0 +1,19 @@
+.classify__container {
+    height: 100vh;
+}
+.container__goodsClassify {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 100px);
+}
+.container__goodsClassify-menu {
+    width: 70px;
+    height: 100%;
+    
+}
+.container__goodsClassify-goods {
+    flex: 1;
+    height: 100%;
+    padding: 10px;
+    background-color: #fff;
+}

@@ -1,0 +1,28 @@
+.swiper-bg {
+    /* background-image: linear-gradient(to bottom, #ffd202, #fdd62b, #fcda41, #fade54, #f9e264, #eaea79, #def08f, #d5f5a5, #c8fac7, #cafce3, #dbfbf4, #f5f8f8); */
+    margin-bottom: 10px;
+}
+.swiper-region-my {
+    background-color: #fff;
+    border-radius: 10px;
+    width: 355px;
+    /* margin: 0 10px; */
+    margin-top: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.swiper-wrapper {
+    padding: 10px;
+}
+.swiper-container-horizontal>.swiper-scrollbar {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 20px;
+    z-index: 999;
+    transform: translate(-50%);
+}
+.swiper-scrollbar-drag {
+    background-color: #ffd202;
+    width: 10px !important;
+}

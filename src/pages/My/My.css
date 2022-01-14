@@ -1,3 +1,7 @@
 .my__container {
     height: 100vh;
 }
+
+.padding {
+   padding: 0 10px;
+}

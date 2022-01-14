@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Scroll from '@/baseUI/scroll'
 import { connect } from 'react-redux'
 import * as actionTypes from './store/actionCreators'
+import { useHistory } from 'react-router-dom'
+import * as api from '@/api'
+import { forceCheck } from 'react-lazyload'
+
 import MenuBar from '@/components/main/menuBar/MenuBar'
 import NavBar from '@/components/main/navBar/NavBar'
 import GoodsList from '@/components/main/goodsList/GoodsList'
@@ -10,9 +14,6 @@ import SpecialGoods from '@/components/main/specialGoods/SpecialGoods'
 import MenuBar_Top from '@/components/main/menuBar/menuBar_Top/MenuBar_Top'
 import ShoppingCartComponent from '@/components/shoppingCartComponent/ShoppingCartComponent'
 
-import { useHistory } from 'react-router-dom'
-import * as api from '@/api'
-import { forceCheck } from 'react-lazyload'
 
 import './Main.css'
 
@@ -54,7 +55,7 @@ const Main = (props) => {
         if (!mainData.length) {
             getMainDataDispatch()
         }
-        fetchList()
+        // fetchList()
     }, [])
     useEffect(() => {
         fetchList()
@@ -112,13 +113,11 @@ const Main = (props) => {
             </div>
             {/* 购物车组件 */}
             <ShoppingCartComponent 
-                selectedGoods={selectedGoods} 
-                setCartInfo={setCartInfo} 
                 totalAccount={totalAccount}
+                selectedGoods={selectedGoods}
                 setTotalAccount={setTotalAccount}
                 goToCart={() => history.push('/home/shoppingcart')}
             />
-
         </div>
     )
 }

@@ -4,7 +4,10 @@ import RecommendListItem from './recommendListItem/RecommendListItem.jsx'
 import './RecommendList.css'
 
 const  RecommendList = (props) => {
-    const { recommendList=[] } = props
+    // state 
+    const { recommendList=[], selectedGoods, totalAccount } = props
+    // action 
+    const { setCartInfo, setTotalAccount } = props
     return (
         <div className="recommend__container">
             <div className="recommend__container_title">
@@ -12,7 +15,14 @@ const  RecommendList = (props) => {
             </div>
             {
                 recommendList.map((item, index) => 
-                    <RecommendListItem key={index} goodData={item}/>
+                    <RecommendListItem 
+                        key={index} 
+                        goodData={item}
+                        selectedGoods={selectedGoods}
+                        totalAccount={totalAccount}
+                        setCartInfo={setCartInfo}
+                        setTotalAccount={setTotalAccount}
+                    />
                 )
             }
         </div>

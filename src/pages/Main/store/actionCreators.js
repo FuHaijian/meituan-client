@@ -1,5 +1,5 @@
 import * as actionType from './constants.js';
-import { reqmain } from '../../../api/index'
+import { reqmain } from '@/api/index'
 
 //主页数据
 export const changeMainData = (data) => {
@@ -31,14 +31,14 @@ export const setIndex = (data) => {
 
 export const setSelectedGoods = (data) => {
     return {
-        type: actionType.SET_SELECTEDGOODS,
+        type: actionType.SET_SELECTED_GOODS,
         data: data
     }
 }
 
 export const setTotalAccount = (data) => {
     return {
-        type: actionType.SET_TOTALACCOUNT,
+        type: actionType.SET_TOTAL_ACCOUNT,
         data: data
     }
 }

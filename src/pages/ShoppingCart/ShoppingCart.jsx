@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { useHistory } from "react-router-dom"
 import Scroll from '@/baseUI/scroll'
-import * as mainActionType from '../Main/store/actionCreators'
+import * as mainActionTypes from '../Main/store/actionCreators'
 import NavBar from '@/components/shoppingCart/navBar/NavBar.jsx'
 import RecommendList from '@/components/recommendList/RecommendList'
 import SelectedGoodsList from '@/components/shoppingCart/selectedGoodsList/SelectedGoodsList'
@@ -13,11 +13,14 @@ import { reqrecommend } from "@/api"
 
 const ShoppingCart = (props) => {
     // state 
-    const { selectedGoods } = props
+    const { selectedGoods, totalAccount } = props
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
     // action 
-    const { getSelectedGoodsDisPatch: setCartInfo } = props
+    const { 
+        getSelectedGoodsDisPatch: setCartInfo,
+        getTotalAccountDispatch: setTotalAccount
+    } = props
     const history = useHistory()
     // 上拉加载更多
     const handlePullUp = () => {
@@ -56,23 +59,33 @@ const ShoppingCart = (props) => {
                         goToShopping={() => history.push('/home/main')}
                     />
                     {/* 商品推荐 */}
-                    <RecommendList recommendList={list}/> 
+                    <RecommendList 
+                        recommendList={list} 
+                        selectedGoods={selectedGoods}
+                        totalAccount={totalAccount}
+                        setCartInfo={setCartInfo}
+                        setTotalAccount={setTotalAccount}
+                    /> 
                 </div>
             </Scroll>
         </div>
     )
 }
 
-const mapStateToProps = (states) => {
+const mapStateToProps = (state) => {
     return {
-        selectedGoods: states.main.selectedGoods
+        selectedGoods: state.main.selectedGoods,
+        totalAccount: state.main.totalAccount
     }
 }
 
 const mapStateToDispatch = (dispatch) => {
     return {
         getSelectedGoodsDisPatch(GoodsList) {
-            dispatch(mainActionType.setSelectedGoods(GoodsList))
+            dispatch(mainActionTypes.setSelectedGoods(GoodsList))
+        },
+        getTotalAccountDispatch(account) {
+            dispatch(mainActionTypes.setTotalAccount(account))
         }
     }
 }

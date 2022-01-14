@@ -1,10 +1,13 @@
 const Koa = require('koa')
 const router = require('koa-router')();
 const app = new Koa()
-const MainData = require('./Data/mainData/MianData.json')
 const cors = require('koa2-cors')
 const Mock = require('mockjs')
 const Random = Mock.Random
+
+const MainData = require('./Data/mainData/MianData.json')
+const MyData = require('./Data/myPageData/myPageData.json')
+const ClassifyData = require('./Data/classifyData/ClassifyData.json')
 
 app.use(cors({
     origin: function(ctx) { //设置允许来自指定域名请求
@@ -63,7 +66,36 @@ router.get('/home/recommend', async(ctx) => {
         data
     }
 })
-
+router.get('/home/my', async(ctx) => {
+    ctx.body = {
+        success: true,
+        data: MyData
+    }
+})
+router.get('/home/classify/goodsData', async(ctx) => {
+    const {limit, page, type} = ctx.request.query
+    let data = Mock.mock({
+        'list|20': [{
+            'title': '@ctitle(15, 20)',
+            "tags|1-2": ["@ctitle(2,3)"],
+            'imgsrc': Random.image('100x100'),
+            "tradeDescription": "@ctitle(4,7)",
+            "numOfPersonPurchased|500-3000": 500, 
+            'id|+1': 1,
+            "price|2-30.2": 2
+        }]
+    })
+    ctx.body = {
+        success: true,
+        data: data
+    }
+})
+router.get('/home/classify', async(ctx) => {
+    ctx.body = {
+        success: true,
+        data: ClassifyData
+    }
+})
 app
     .use(router.routes())
     .use(router.allowedMethods())

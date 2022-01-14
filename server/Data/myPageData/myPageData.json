@@ -1,0 +1,74 @@
+{
+    "OrdersOprationButtomData": [
+        {
+            "id": "func1",
+            "icon": "WillPayIcon",
+            "title": "待支付"
+        },
+        {
+            "id": "func2",
+            "icon": "PickUpIcon",
+            "title": "待取货"
+        },
+        {
+            "id": "func3",
+            "icon": "EvaluationIcon",
+            "title": "待评价"
+        },
+        {
+            "id": "func4",
+            "icon": "AfterSaleIcon",
+            "title": "退款/售后"
+        },
+        {
+            "id": "func5",
+            "icon": "AllOrdersIcon",
+            "title": "全部订单"
+        }
+    ],
+    "menuBarData": {
+        "list1":[
+            {
+                "id":1,
+                "picUrl":"https://images.daojia.com/dop/custom/4847e41c9c4c23b11c252815df12d42a.png?x-oss-process=image/auto-orient,0/format,webp",
+                "type":"蔬菜豆制品"
+            },{
+                "id":2,
+                "picUrl":"https://images.daojia.com/dop/custom/64b0a24bebec5e986b7523d24f38c9e8.png",
+                "type":"粮油调味"
+            },
+            {
+                "id":3,
+                "picUrl":"https://images.daojia.com/dop/custom/9b04c448bf5a2e53407227abb39b27dc.png",
+                "type":"休闲零食"
+            },
+            {
+                "id":4,
+                "picUrl":"https://images.daojia.com/dop/custom/c16a42b496dad271fc602eae789ce1bf.png",
+                "type":"时令水果"
+            },
+            {
+                "id":5,
+                "picUrl":"https://images.daojia.com/dop/custom/01a443c96c08e02cd32ddd9958f82292.png",
+                "type":"酒水乳饮"
+            }
+        ],
+        "list3": [
+            {
+                "id":11,
+                "picUrl":"https://images.daojia.com/dop/custom/9b04c448bf5a2e53407227abb39b27dc.png",
+                "type":"天天赚鸡蛋"
+            },
+            {
+                "id":12,
+                "picUrl":"https://images.daojia.com/dop/custom/c16a42b496dad271fc602eae789ce1bf.png",
+                "type":"签到领钱"
+            },
+            {
+                "id":13,
+                "picUrl":"https://images.daojia.com/dop/custom/64b0a24bebec5e986b7523d24f38c9e8.png",
+                "type":"边玩边赚"
+            }
+        ]
+    }
+}
