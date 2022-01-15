@@ -1,18 +1,21 @@
-import React from "react"
+import React, { useState } from "react"
 import Scroll from '@/baseUI/scroll'
 import Lazyload, { forceCheck } from "react-lazyload"
 import Loading from '@/assets/images/loading.gif'
 import { floatAdd } from '@/api/utils'
+import SubIcon from '@/assets/images/sub.png'
+import AddIcon from '@/assets/images/add.png'
 
 import './GoodsList.css'
 
 const GoodsList = (props) => {
     // state 
-    let { page, GoodsListData=[], totalAccount, selectedGoods } = props
+    let { page, GoodsListData = [], totalAccount, selectedGoods } = props
     // action 
     const { setCartInfo, setTotalAccount, getMore } = props
+    let [num, setNum] = useState(1)
     const changeShoppingCart = (good, price) => {
-        if(price > 0) {
+        if (price > 0) {
             setTotalAccount(floatAdd(totalAccount, price))
             setCartInfo([good, ...selectedGoods])
         }
@@ -39,13 +42,13 @@ const GoodsList = (props) => {
             >
                 <div>
                     {
-                        GoodsListData.map((item, index) => 
+                        GoodsListData.map((item, index) =>
                             <div className="goodsItem" key={index}>
                                 <Lazyload
                                     height={100}
                                     placeholder={
-                                        <img height="100%" width="100%" 
-                                        src={Loading}/>
+                                        <img height="100%" width="100%"
+                                            src={Loading} />
                                     }
                                 >
                                     <img src={item.imgsrc} className="goodsItem__pic"></img>
@@ -53,7 +56,7 @@ const GoodsList = (props) => {
                                 <div className="goodsItem__desc">
                                     <div className="goodsItem__desc-title">
                                         {
-                                            item.tags.map(tag => 
+                                            item.tags.map(tag =>
                                                 <span className="tag" key={tag}>
                                                     {tag}
                                                 </span>
@@ -67,12 +70,21 @@ const GoodsList = (props) => {
                                     <div className="goodsItem__desc-price">
                                         ￥{item.price}
                                     </div>
-                                    <div 
-                                        className="goodsItem__desc-buttom" 
-                                        onClick={() => changeShoppingCart(item, item.price)}
-                                    >
-                                        加入购物车
-                                    </div>
+                                    {
+                                        false ?
+                                            <div className="selectedGoodsItem__goodsInfo_buttom">
+                                                {/* <img src={SubIcon} className="subButtom" onClick={() => { setNum(--num) }} />
+                                                <div className="goodsNum">{num}</div>
+                                                <img src={AddIcon} className="addButtom" onClick={() => { setNum(++num) }} /> */}
+                                            </div>
+                                            : <div
+                                                className="goodsItem__desc-buttom"
+                                                onClick={() => changeShoppingCart(item, item.price)}
+                                            >
+                                                加入购物车
+                                            </div>
+                                    }
+
                                 </div>
                             </div>
                         )

@@ -7,15 +7,16 @@ const Srcoll_X = styled.div`
     background-color: #fff;
     overflow-x: scroll;
     white-space: nowrap;
+    flex-wrap: nowrap;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: center; 
     .item {
         background-color: #f4f7f7;
         margin: 0 5px;
         padding: 0 5px;
         border-radius: 10px;
         box-sizing: border-box;
+        flex-shrink: 0;
     }
     .activeItem {
         background-color: #ffffd6;

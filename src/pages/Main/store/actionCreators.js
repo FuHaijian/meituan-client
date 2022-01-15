@@ -5,7 +5,7 @@ import { reqmain } from '@/api/index'
 export const changeMainData = (data) => {
     return {
         type: actionType.CHANGE_MAINDATA,
-        data: data
+        data
     }
 }
 
@@ -25,20 +25,27 @@ export const getMainData = () => {
 export const setIndex = (data) => {
     return {
         type: actionType.SET_INDEX,
-        data: data
+        data
+    }
+}
+
+export const setCompressedData = (data) => {
+    return {
+        type: actionType.SET_COMPRESSED_DATA,
+        data
     }
 }
 
 export const setSelectedGoods = (data) => {
     return {
         type: actionType.SET_SELECTED_GOODS,
-        data: data
+        data
     }
 }
 
 export const setTotalAccount = (data) => {
     return {
         type: actionType.SET_TOTAL_ACCOUNT,
-        data: data
+        data
     }
 }

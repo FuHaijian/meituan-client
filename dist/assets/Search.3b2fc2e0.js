@@ -1,0 +1,1 @@
+import{l as e,h as a,F as r,j as c}from"./vendor.0091d4a3.js";const n=()=>{const s=e();return a(r,{children:c("div",{className:"page",children:[a("div",{className:"back",onClick:()=>s.goBack()}),"\u8FD4\u56DE\u3000\u3000To be continue..."]})})};export{n as default};

@@ -140,6 +140,9 @@ const mapStateToDisPatch = (dispatch) => {
         },
         getTotalAccountDispatch(totalAccount) {
             dispatch(actionTypes.setTotalAccount(totalAccount))
+        },
+        getTabbarIndexDispatch(index) {
+            dispatch(actionTypes.setIndex(index))
         }
     }
 }

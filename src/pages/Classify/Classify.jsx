@@ -14,7 +14,7 @@ import './Classify.css'
 
 const Classify = (props) => {
     // state 
-    const { classifyPageData, totalAccount, selectedGoods } = props
+    const { classifyPageData, totalAccount, selectedGoods, tabberIndex } = props
     const { menuData, miniMenuData } = classifyPageData
     const [list, setList] = useState([])
     let [page, setPage] = useState(1)
@@ -24,7 +24,8 @@ const Classify = (props) => {
     const { 
         getClassifyPageDataDispatch, 
         getSelectedGoodsDataDispatch:setCartInfo, 
-        getTotalAccountDispatch:setTotalAccount 
+        getTotalAccountDispatch:setTotalAccount,
+        getTabbarIndexDispatch:setIndex
     } = props
     // 上拉加载更多数据
     const getMoreGoodsListData = async() => {
@@ -38,6 +39,10 @@ const Classify = (props) => {
             .then(res => {
                 setList([...res.data.data.list])
         })
+    }
+    const gotoShoppingCart = () => {
+        setIndex(2)
+        history.push('/home/shoppingcart')
     }
     // 页面初始化
     useEffect(() => {
@@ -79,7 +84,7 @@ const Classify = (props) => {
             <ShoppingCartComponent 
                 totalAccount={totalAccount}
                 selectedGoods={selectedGoods}
-                goToCart={() => history.push('/home/shoppingcart')}
+                goToCart={() => gotoShoppingCart()}
             />
         </div>
     )
@@ -89,7 +94,8 @@ const mapStateToProps = (state) => {
     return {
         classifyPageData: state.classify.classifyPageData, 
         totalAccount: state.main.totalAccount,
-        selectedGoods: state.main.selectedGoods
+        selectedGoods: state.main.selectedGoods,
+        tabberIndex: state.main.index 
     }
 }
 
@@ -103,6 +109,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         getTotalAccountDispatch(account) {
             dispatch(mainActions.setTotalAccount(account))
+        },
+        getTabbarIndexDispatch(index) {
+            dispatch(mainActions.setIndex(index))
         }
     }
 }

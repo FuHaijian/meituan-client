@@ -9,6 +9,7 @@ const MenuList = styled.div`
     width: 100%;
     height: calc(100vh - 100px);
     overflow-y: scroll;
+    /* margin-bottom: 40px; */
     font-size: 13px;
     .menuItem {
         height: 50px;

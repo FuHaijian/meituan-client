@@ -6,6 +6,8 @@ const Classify = lazy(() => import('../pages/Classify/Classify'))
 const ShoppingCart = lazy(() => import('../pages/ShoppingCart/ShoppingCart'))
 const My = lazy(() => import('../pages/My/My'))
 const Search = lazy(() => import('../pages/Search/Search'))
+const Detail = lazy(() => import('../pages/Detail/Deatil'))
+const ErrorPage = lazy(() => import('../pages/ErrorPage/ErrorPage'))
 import Tabbuttom from '../components/tabbuttom/Tabbuttom'
 
 const SuspenseComponent = Component => props => {
@@ -56,7 +58,23 @@ export default [{
             path: '/search',
             exact: true,
             component: SuspenseComponent(Search)
-        }
+        },
+        {
+            path: '/detail',
+            component: SuspenseComponent(Detail),
+            // render: () => < Redirect to = { "/detail/error" }/>,
+            routes: [
+                {
+                    path: '/detail/:type',
+                    component: SuspenseComponent(Detail)
+                },
+               
+            ]
+        },
+        {
+            path: '/error',
+            component: SuspenseComponent(ErrorPage)
+        },
     ]
 }]
 

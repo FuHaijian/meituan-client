@@ -4,7 +4,8 @@ const defaultstate = {
     maindata: [],
     index: 0, 
     selectedGoods: [],
-    totalAccount: 0
+    totalAccount: 0,
+    compressedData: []
 }
 
 const reducer = (state = defaultstate, action) => {
@@ -17,6 +18,8 @@ const reducer = (state = defaultstate, action) => {
             return {...state, index: action.data }
         case actionTypes.SET_TOTAL_ACCOUNT:
             return {...state, totalAccount: action.data }
+        case actionTypes.SET_COMPRESSED_DATA:
+            return {...state, compressedData: action.data }
         default:
             return state;
     }
