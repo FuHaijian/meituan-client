@@ -14,6 +14,7 @@ const  RecommendList = (props) => {
                 --　爆款推荐　--
             </div>
             {
+                recommendList.length?
                 recommendList.map((item, index) => 
                     <RecommendListItem 
                         key={index} 
@@ -23,7 +24,7 @@ const  RecommendList = (props) => {
                         setCartInfo={setCartInfo}
                         setTotalAccount={setTotalAccount}
                     />
-                )
+                ):""
             }
         </div>
     )

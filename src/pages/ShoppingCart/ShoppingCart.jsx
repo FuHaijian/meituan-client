@@ -18,6 +18,7 @@ const ShoppingCart = (props) => {
     const [list, setList] = useState([])
     // action 
     const { 
+        getIndexDispatch: setIndex,
         getSelectedGoodsDisPatch: setCartInfo,
         getTotalAccountDispatch: setTotalAccount
     } = props
@@ -31,7 +32,7 @@ const ShoppingCart = (props) => {
         // console.log('+++++');
     }
     const getRecommendListData = async() => {
-        await reqrecommend()
+        await reqrecommend(page)
             .then(res => {
                 setList([...list, ...res.data.data.list])
             })
@@ -39,6 +40,9 @@ const ShoppingCart = (props) => {
     useEffect(() => {
         getRecommendListData()
     }, [page])
+    useEffect(() => {
+        setIndex(2)
+    }, [])
     return (
         <div className="cart__container">
             <NavBar />
@@ -81,6 +85,9 @@ const mapStateToProps = (state) => {
 
 const mapStateToDispatch = (dispatch) => {
     return {
+        getIndexDispatch(index) {
+            dispatch(mainActionTypes.setIndex(index))
+        },
         getSelectedGoodsDisPatch(GoodsList) {
             dispatch(mainActionTypes.setSelectedGoods(GoodsList))
         },

@@ -30,6 +30,7 @@ export const setIndex = (data) => {
 }
 
 export const setCompressedData = (data) => {
+    // console.log(data, '+++++');
     return {
         type: actionType.SET_COMPRESSED_DATA,
         data

@@ -1,13 +1,16 @@
 import React from "react"
 import LazyLoad from "react-lazyload"
+import { useHistory } from "react-router-dom"
 import loading from '@/assets/images/loading.gif'
 import { floatAdd } from '@/api/utils'
 
 import './recommendListItem.css'
 
+
 const recommendListItem = (props) => {
     const { selectedGoods=[], totalAccount } = props
     const { setCartInfo, setTotalAccount } = props
+    const history = useHistory()
     const changeShoppingCart = (good, price) => {
         if(price > 0) {
             setTotalAccount(floatAdd(totalAccount, price))
@@ -15,7 +18,6 @@ const recommendListItem = (props) => {
         }
     }
     const { goodData } = props
-    // console.log(goodData, '====');
     return (
         <div className="listItem__container">
             <div className="listItem__container__pic">
@@ -25,11 +27,11 @@ const recommendListItem = (props) => {
                          <img height="100%" width="100%" 
                          src={loading}/>}
                 >
-                    <img src={goodData.imgsrc} alt="" />
+                    <img src={goodData.imgsrc} onClick={() => history.push(`/detail/${goodData.id}`)}/>
                 </LazyLoad>
             </div>
             <div className="listItem__container__desc">
-                <div className="listItem__container__desc_title">
+                <div className="listItem__container__desc_title" onClick={() => history.push(`/detail/${goodData.id}`)}>
                     {
                         goodData.tags.map(item => 
                             <div className="title-tags" key={item}>

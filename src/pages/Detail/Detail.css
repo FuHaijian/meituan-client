@@ -1,0 +1,12 @@
+.detail__container {
+    height: 100vh;
+}
+.promiseImg {
+    width: 100vw;
+    height: 400px;
+}
+.detailImg{
+    width: 100vw;
+    height: 110px;
+    margin-bottom: 5px;
+}

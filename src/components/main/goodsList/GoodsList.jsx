@@ -5,9 +5,14 @@ import './GoodsList.css'
 
 const GoodsList = (props) => {
     // state 
-    const { GoodsListData = [], selectedGoods, totalAccount } = props
+    const { GoodsListData = [], selectedGoods, totalAccount, compressedData } = props
     // action 
-    const { setTotalAccount, setCartInfo } = props
+    const { 
+        setTotalAccount, 
+        setCartInfo, 
+        goToDetail, 
+        changeCompressedData 
+    } = props
     return (
         <div className="goodsList__container">
             {
@@ -17,10 +22,14 @@ const GoodsList = (props) => {
                         good={item}
                         key={index}
                         index={index}
+                        changeCompressedData={changeCompressedData}
+                        compressedData={compressedData}
                         selectedGoods={selectedGoods}
                         setCartInfo={setCartInfo}
                         totalAccount={totalAccount}
-                        setTotalAccount={setTotalAccount}/>)
+                        setTotalAccount={setTotalAccount}
+                        goToDetail={goToDetail}
+                    />)
             }
         </div>
     )

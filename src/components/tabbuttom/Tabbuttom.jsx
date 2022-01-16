@@ -15,22 +15,8 @@ import MyIconActive from '@/assets/tabbarImg/my-active.png'
 import './Tabbuttom.css'
 
 const Bottom = (props) => {
-    let { route, index:V_index } = props;
-    let [index, setIndex] = useState(0)
+    let { route, index } = props;
     const { getIndexDispatch:changeIndex } = props
-    useState(() =>{
-        setIndex(V_index)
-    }, [])
-    // useEffect(() =>{
-    //     setIndex(V_index)
-    // }, [V_index])
-    useEffect(() => {
-        changeIndex(index)
-    }, [index])
-    // 根据用户直接访问的处理， 非首页
-    const { pathname } = useLocation()
-    const { routes } = route
-    index = routes.findIndex(item => item.path == pathname) - 1
     
     return (
         <>
@@ -39,7 +25,7 @@ const Bottom = (props) => {
             {/* tabbar位置 */}
             <ul className="tabbar-warpper">
                 <li
-                    onClick={() => { setIndex(0) }}
+                    onClick={() => { changeIndex(0) }}
                     className="tabbar-warpper__item"
                     key="1">
                     <Link to="/home/main" style={{ textDecoration: "none" }}>
@@ -58,7 +44,7 @@ const Bottom = (props) => {
                     </Link>
                 </li>
                 <li
-                    onClick={() => { setIndex(1) }}
+                    onClick={() => { changeIndex(1) }}
                     className="tabbar-warpper__item"
                     key="2">
                     <Link to="/home/classify" style={{ textDecoration: "none" }}>
@@ -77,7 +63,7 @@ const Bottom = (props) => {
                     </Link>
                 </li>
                 <li
-                    onClick={() => { setIndex(2) }}
+                    onClick={() => { changeIndex(2) }}
                     className="tabbar-warpper__item"
                     key="3">
                     <Link to="/home/shoppingCart" style={{ textDecoration: "none" }}>
@@ -96,7 +82,7 @@ const Bottom = (props) => {
                     </Link>
                 </li>
                 <li
-                    onClick={() => { setIndex(3) }}
+                    onClick={() => { changeIndex(3) }}
                     className="tabbar-warpper__item"
                     key="4">
                     <Link to="/home/my" style={{ textDecoration: "none" }}>

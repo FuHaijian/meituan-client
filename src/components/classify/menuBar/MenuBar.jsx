@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 const MenuList = styled.div`
@@ -9,7 +9,6 @@ const MenuList = styled.div`
     width: 100%;
     height: calc(100vh - 100px);
     overflow-y: scroll;
-    /* margin-bottom: 40px; */
     font-size: 13px;
     .menuItem {
         height: 50px;
@@ -26,12 +25,17 @@ const MenuList = styled.div`
 ` ;
 
 const MenuBar = (props) => {
-    const { menuData=[], changeType } = props
+    const { menuData=[], changeType, type } = props
     const [activeIndex, setActiveIndex] = useState(0)
     const changeMenu = (index, type) => {
         setActiveIndex(index)
         changeType(type)
     }
+    useEffect(() => {
+        if(type) {
+            setActiveIndex(type-1)
+        }
+    })
     return (
         <MenuList>
             {

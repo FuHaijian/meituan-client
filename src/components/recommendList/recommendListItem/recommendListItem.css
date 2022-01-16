@@ -5,6 +5,14 @@
     border-bottom: 2px solid #f2f2f2;
     position: relative;
 }
+.listItem__container__pic {
+    width: 140px;
+    height: 140px;
+}
+.listItem__container__pic img {
+    width: 140px;
+    height: 140px;
+}
 .listItem__container__desc {
     flex: 1;
     padding: 0 10px;

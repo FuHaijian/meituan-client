@@ -5,7 +5,8 @@
                 "id":1,
                 "picUrl":"https://images.daojia.com/dop/custom/4847e41c9c4c23b11c252815df12d42a.png?x-oss-process=image/auto-orient,0/format,webp",
                 "type":"蔬菜豆制品"
-            },{
+            },
+            {
                 "id":2,
                 "picUrl":"https://images.daojia.com/dop/custom/64b0a24bebec5e986b7523d24f38c9e8.png",
                 "type":"粮油调味"
@@ -31,7 +32,8 @@
                 "id":6,
                 "picUrl":"https://images.daojia.com/dop/custom/4847e41c9c4c23b11c252815df12d42a.png?x-oss-process=image/auto-orient,0/format,webp",
                 "type":"肉禽蛋水产"
-            },{
+            },
+            {
                 "id":7,
                 "picUrl":"https://images.daojia.com/dop/custom/64b0a24bebec5e986b7523d24f38c9e8.png",
                 "type":"个护清洁"
@@ -82,6 +84,73 @@
             }
         ]
     },
+    "menuBar_TopData": [
+        {
+            "type":1,
+            "picUrl":"https://images.daojia.com/dop/custom/4847e41c9c4c23b11c252815df12d42a.png?x-oss-process=image/auto-orient,0/format,webp",
+            "title":"蔬菜豆制品"
+        },
+        {
+            "type":2,
+            "picUrl":"https://images.daojia.com/dop/custom/c16a42b496dad271fc602eae789ce1bf.png",
+            "title":"时令水果"
+        },
+        {
+            "type":3,
+            "picUrl":"https://images.daojia.com/dop/custom/4847e41c9c4c23b11c252815df12d42a.png?x-oss-process=image/auto-orient,0/format,webp",
+            "title":"肉禽蛋水产"
+        },
+        {
+            "type":4,
+            "picUrl":"https://images.daojia.com/dop/custom/01a443c96c08e02cd32ddd9958f82292.png",
+            "title":"酒水乳饮"
+        },
+        {
+            "type":5,
+            "picUrl":"https://images.daojia.com/dop/custom/9b04c448bf5a2e53407227abb39b27dc.png",
+            "title": "休闲零食"
+        },
+        {
+            "type":6,
+            "picUrl":"https://images.daojia.com/dop/custom/64b0a24bebec5e986b7523d24f38c9e8.png",
+            "title":"粮油调味"
+        },
+        {
+            "type":7,
+            "picUrl":"https://images.daojia.com/dop/custom/9b04c448bf5a2e53407227abb39b27dc.png",
+            "title":"冷冻食品"
+        },
+        {
+            "type":8,
+            "picUrl":"https://images.daojia.com/dop/custom/64b0a24bebec5e986b7523d24f38c9e8.png",
+            "title":"个护清洁"
+        },
+        {
+            "type":9,
+            "picUrl":"https://images.daojia.com/dop/custom/c16a42b496dad271fc602eae789ce1bf.png",
+            "title":"日用百货"
+        },
+        {
+            "type":10,
+            "picUrl":"https://images.daojia.com/dop/custom/9b04c448bf5a2e53407227abb39b27dc.png",
+            "title":"花卉绿植"
+        },
+        {
+            "type":11,
+            "picUrl":"https://images.daojia.com/dop/custom/9b04c448bf5a2e53407227abb39b27dc.png",
+            "title":"火锅来了"
+        },
+        {
+            "type":12,
+            "picUrl":"https://images.daojia.com/dop/custom/c16a42b496dad271fc602eae789ce1bf.png",
+            "title":"每日上新"
+        },
+        {
+            "type":13,
+            "picUrl":"https://images.daojia.com/dop/custom/64b0a24bebec5e986b7523d24f38c9e8.png",
+            "title":"促销特惠"
+        }
+    ],
     "specialGoodsData": {
         "activity1": {
             "title": "特价菜场",
@@ -91,12 +160,12 @@
                 {
                     "id": 8989,
                     "price": "5.99",
-                    "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                    "imgsrc": "//scpic3.chinaz.net/Files/pic/pic9/201806/bpic7062_s.jpg"
                 },
                 {
                     "id": 8888,
                     "price": "5.99",
-                    "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                    "imgsrc": "//scpic1.chinaz.net/Files/pic/pic9/201707/bpic2232_s.jpg"
                 }
             ]
         },
@@ -108,12 +177,12 @@
                 {
                     "id": 7878,
                     "price": "9.99",
-                    "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                    "imgsrc": "//scpic2.chinaz.net/Files/pic/pic9/202108/bpic23935_s.jpg"
                 },
                 {
                     "id": 7676,
                     "price": "13.99",
-                    "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                    "imgsrc": "//scpic1.chinaz.net/Files/pic/pic9/201609/apic23505_s.jpg"
                 }
             ]
         }
@@ -125,22 +194,22 @@
             {
                 "id": 7878,
                 "price": "10.99",
-                "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                "imgsrc": "//scpic.chinaz.net/Files/pic/pic9/201609/apic23331_s.jpg"
             },
             {
                 "id": 7676,
                 "price": "1.99",
-                "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                "imgsrc": "//scpic1.chinaz.net/Files/pic/pic9/201908/bpic13333_s.jpg"
             },
             {
                 "id": 7875,
                 "price": "6.99",
-                "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                "imgsrc": "//scpic3.chinaz.net/Files/pic/pic9/201907/bpic12800_s.jpg"
             },
             {
                 "id": 7674,
                 "price": "3.99",
-                "imgsrc": "https://p.ssl.qhimg.com/dmsmty/148_148_100/t018844e483e6ddec83.webp"
+                "imgsrc": "//scpic2.chinaz.net/Files/pic/pic9/201606/apic21608_s.jpg"
             }
 
         ]

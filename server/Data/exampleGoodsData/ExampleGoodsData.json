@@ -1,0 +1,180 @@
+{
+    "ExampleGoodsData": [
+        {
+            "id": 1,
+            "title": "广西沃柑新鲜水果当季橘子薄皮现摘现发整箱 5斤特果【精选】 当日发货",
+            "tags": ["年货节", "秒杀"],
+            "tradeDescription": "品质保证",
+            "numOfPersonPurchased": 1679,
+            "imgsrc": "http://localhost:1314/images/goods1/cover.png",
+            "imgList": [
+                {
+                    "imgsrc": "http://localhost:1314/images/goods1/cover.png",
+                    "linkUrl": "http://localhost:1314/images/goods1/cover.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods1/list1.png",
+                    "linkUrl": "http://localhost:1314/images/goods1/list1.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods1/list1.png",
+                    "linkUrl": "http://localhost:1314/images/goods1/list1.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods1/list1.png",
+                    "linkUrl": "http://localhost:1314/images/goods1/list1.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods1/list1.png",
+                    "linkUrl": "http://localhost:1314/images/goods1/list1.png"
+                }
+            ],
+            "price": 33.9,
+            "declarations": [
+                {
+                    "title": "生产日期",
+                    "info": "2022-1-20"
+                },
+                {
+                    "title": "保质期",
+                    "info": "30天"
+                },
+                {
+                    "title": "",
+                    "info": "产自广西"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "title": "无花果干500克*2袋 休闲零食 蜜饯果干 新疆特产 果干果脯 健康食品",
+            "tags": ["年货节"],
+            "tradeDescription": "七天无理由退货",
+            "numOfPersonPurchased": 1356,
+            "imgsrc": "http://localhost:1314/images/goods2/cover.png",
+            "imgList": [
+                {
+                    "imgsrc": "http://localhost:1314/images/goods2/cover.png",
+                    "linkUrl": "http://localhost:1314/images/goods2/cover.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods2/list1.png",
+                    "linkUrl": "http://localhost:1314/images/goods2/list1.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods2/list2.png",
+                    "linkUrl": "http://localhost:1314/images/goods2/list2.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods2/list3.png",
+                    "linkUrl": "http://localhost:1314/images/goods2/list3.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods2/list4.png",
+                    "linkUrl": "http://localhost:1314/images/goods2/list4.png"
+                }
+            ],
+            "price": 9.9,
+            "declarations": [
+                {
+                    "title": "生产日期",
+                    "info": "2022-12-30"
+                },
+                {
+                    "title": "保质期",
+                    "info": "180天"
+                },
+                {
+                    "title": "",
+                    "info": "产自新疆"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "title": "雪媚娘蛋黄酥网红休闲零食点心糕点 紫薯味雪媚娘蛋黄酥 5个装(口味随机发)",
+            "tags": ["年货节", "秒杀"],
+            "tradeDescription": "七天无理由退货",
+            "numOfPersonPurchased": 1534,
+            "imgsrc": "http://localhost:1314/images/goods3/cover.png",
+            "imgList": [
+                {
+                    "imgsrc": "http://localhost:1314/images/goods3/cover.png",
+                    "linkUrl": "http://localhost:1314/images/goods3/cover.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods3/list1.png",
+                    "linkUrl": "http://localhost:1314/images/goods3/list1.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods3/list2.png",
+                    "linkUrl": "http://localhost:1314/images/goods3/list2.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods3/list3.png",
+                    "linkUrl": "http://localhost:1314/images/goods3/list3.png"
+                },
+                {
+                    "imgsrc": "http://localhost:1314/images/goods3/list4.png",
+                    "linkUrl": "http://localhost:1314/images/goods3/list4.png"
+                }
+            ],
+            "price": 6.9,
+            "declarations": [
+                {
+                    "title": "生产日期",
+                    "info": "2022-11-30"
+                },
+                {
+                    "title": "保质期",
+                    "info": "180天"
+                },
+                {
+                    "title": "",
+                    "info": "产自南宁"
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "title": "优质的服务 品质保障 用户放心 便利实惠 欢迎惠顾",
+            "tags": ["购物节"],
+            "tradeDescription": "七天无理由退货",
+            "numOfPersonPurchased": 9999,
+            "imgsrc": "https://dummyimage.com/375x375",
+            "imgList": [
+                {
+                    "imgsrc": "https://dummyimage.com/375x375",
+                    "linkUrl": "https://dummyimage.com/375x375"
+                },
+                {
+                    "imgsrc": "https://dummyimage.com/375x375",
+                    "linkUrl": "https://dummyimage.com/375x375"
+                },
+                {
+                    "imgsrc": "https://dummyimage.com/375x375",
+                    "linkUrl": "https://dummyimage.com/375x375"
+                },
+                {
+                    "imgsrc": "https://dummyimage.com/375x375",
+                    "linkUrl": "https://dummyimage.com/375x375"
+                }
+            ],
+            "price": 999,
+            "declarations": [
+                {
+                    "title": "生产日期",
+                    "info": "9999-99-99"
+                },
+                {
+                    "title": "保质期",
+                    "info": "999天"
+                },
+                {
+                    "title": "",
+                    "info": "产自美团优选"
+                }
+            ]
+        }
+    ]
+}

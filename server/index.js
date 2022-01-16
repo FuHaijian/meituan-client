@@ -5,9 +5,14 @@ const cors = require('koa2-cors')
 const Mock = require('mockjs')
 const Random = Mock.Random
 
+const serve = require('koa-static');
+
 const MainData = require('./Data/mainData/MianData.json')
 const MyData = require('./Data/myPageData/myPageData.json')
 const ClassifyData = require('./Data/classifyData/ClassifyData.json')
+const ExampleData = require('./Data/exampleGoodsData/ExampleGoodsData.json')
+
+app.use(serve('./public'));
 
 app.use(cors({
     origin: function(ctx) { //设置允许来自指定域名请求
@@ -31,18 +36,25 @@ router.get('/home/main', async (ctx) => {
 router.get('/home/list', async(ctx) => {
     // 参数
     let { limit = 20, page = 1} = ctx.request.query
-    let data = Mock.mock({
+    let data;
+    let MockData = Mock.mock({
         'list|20': [{
             'title': '@ctitle(15, 20)',
             'activites|0-1': "@ctitle(3, 5)",
             "tags|1-2": ["@ctitle(2,3)"],
             'imgsrc': Random.image('168x168'),
             "tradeDescription": "@ctitle(4,7)",
-            'id|+1': 1,
+            'id|+1': 4,
             "price|2-30.2": 2 
         }]
     })
-
+    if(page == 1) {
+        data = {
+            "list": [...ExampleData.ExampleGoodsData, ...MockData.list]
+        } 
+    }else {
+        data = MockData
+    }
     ctx.body = {
         success: true,
         data
@@ -50,17 +62,25 @@ router.get('/home/list', async(ctx) => {
 })
 router.get('/home/recommend', async(ctx) => {
     let { limit = 20, page = 1} = ctx.request.query
-    let data = Mock.mock({
+    let data;
+    let MockData = Mock.mock({
         'list|20': [{
             'title': '@ctitle(15, 20)',
             "tags|1-2": ["@ctitle(2,3)"],
             'imgsrc': Random.image('140x140'),
             "tradeDescription": "@ctitle(4,7)",
             "numOfPersonPurchased|500-3000": 500, 
-            'id|+1': 1,
+            'id|+1': 4,
             "price|2-30.2": 2
         }]
     })
+    if(page == 1) {
+        data = {
+            list: [...ExampleData.ExampleGoodsData, ...MockData.list] 
+        }
+    }else {
+        data = MockData
+    }
     ctx.body = {
         success: true,
         data
@@ -74,17 +94,25 @@ router.get('/home/my', async(ctx) => {
 })
 router.get('/home/classify/goodsData', async(ctx) => {
     const {limit, page, type} = ctx.request.query
-    let data = Mock.mock({
+    let data;
+    let MockData = Mock.mock({
         'list|20': [{
             'title': '@ctitle(15, 20)',
             "tags|1-2": ["@ctitle(2,3)"],
             'imgsrc': Random.image('100x100'),
             "tradeDescription": "@ctitle(4,7)",
             "numOfPersonPurchased|500-3000": 500, 
-            'id|+1': 1,
+            'id|+1': 4,
             "price|2-30.2": 2
         }]
     })
+    if(page == 1) {
+        data = {
+            list: [...ExampleData.ExampleGoodsData, ...MockData.list]
+        } 
+    }else {
+        data = MockData
+    }
     ctx.body = {
         success: true,
         data: data
@@ -94,6 +122,20 @@ router.get('/home/classify', async(ctx) => {
     ctx.body = {
         success: true,
         data: ClassifyData
+    }
+})
+router.get('/detail/:id', async(ctx) => {
+    const { id } = ctx.params
+    if(id < 4) {
+        ctx.body = {
+            success: true,
+            data: ExampleData.ExampleGoodsData[id-1]
+        }
+    } else {
+        ctx.body = {
+            success: true,
+            data: ExampleData.ExampleGoodsData[3]
+        }
     }
 })
 app

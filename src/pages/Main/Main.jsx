@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Scroll from '@/baseUI/scroll'
 import { connect } from 'react-redux'
-import * as actionTypes from './store/actionCreators'
+import * as actions from './store/actionCreators'
 import { useHistory } from 'react-router-dom'
 import * as api from '@/api'
 import { forceCheck } from 'react-lazyload'
@@ -23,9 +23,11 @@ const Main = (props) => {
     const { 
         menuBarData={"list1":[],"list2":[],"list4":[]}, 
         specialGoodsData, 
-        SnapUpGoodsData
+        SnapUpGoodsData,
+        menuBar_TopData,
+        compressedData
     } = mainData
-    const menuBar_TopData = [...menuBarData.list1, ...menuBarData.list4, ...menuBarData.list2]
+    console.log(compressedData, '_+_+_+_+');
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
     const [navBarFixed, setNavBarFixed] = useState(false)
@@ -35,7 +37,8 @@ const Main = (props) => {
     const { 
         getMainDataDispatch, 
         getSelectedGoodsDisPatch:setCartInfo,
-        getTotalAccountDispatch:setTotalAccount
+        getTotalAccountDispatch:setTotalAccount,
+        getCompressedDataDispatch: changeCompressedData
     } = props
     const history = useHistory()
     const fetchList = () => {
@@ -55,7 +58,6 @@ const Main = (props) => {
         if (!mainData.length) {
             getMainDataDispatch()
         }
-        // fetchList()
     }, [])
     useEffect(() => {
         fetchList()
@@ -96,10 +98,13 @@ const Main = (props) => {
                         {/* 商品列表 */}
                         <GoodsList 
                             GoodsListData={list} 
-                            setCartInfo={setCartInfo} 
+                            setCartInfo={setCartInfo}
                             selectedGoods={selectedGoods}
                             totalAccount={totalAccount}
                             setTotalAccount={setTotalAccount}
+                            changeCompressedData={changeCompressedData}
+                            compressedData={compressedData}
+                            goToDetail={(id) => history.push(`/detail/${id}`)}
                         />
                     </div>
                 </div>
@@ -109,7 +114,10 @@ const Main = (props) => {
                 <NavBar goToSearch={() => history.push('/search')} navBarFixed={navBarFixed}/>
             </div>
             <div style={menuBarFixed?{display:""}:{display:"none"}}>
-                <MenuBar_Top menuBarData={menuBar_TopData} menuBarFixed={menuBarFixed}/>
+                <MenuBar_Top 
+                    menuBarData={menuBar_TopData} 
+                    menuBarFixed={menuBarFixed} 
+                />
             </div>
             {/* 购物车组件 */}
             <ShoppingCartComponent 
@@ -126,23 +134,23 @@ const mapStateToProps = (state) => {
     return {
         mainData: state.main.maindata,
         selectedGoods: state.main.selectedGoods,
-        totalAccount: state.main.totalAccount
+        totalAccount: state.main.totalAccount,
+        compressedData: state.main.compressedData
     }
-
 }
 const mapStateToDisPatch = (dispatch) => {
     return {
         getMainDataDispatch() {
-            dispatch(actionTypes.getMainData())
+            dispatch(actions.getMainData())
         },
         getSelectedGoodsDisPatch(goodsList) {
-            dispatch(actionTypes.setSelectedGoods(goodsList))
+            dispatch(actions.setSelectedGoods(goodsList))
         },
         getTotalAccountDispatch(totalAccount) {
-            dispatch(actionTypes.setTotalAccount(totalAccount))
+            dispatch(actions.setTotalAccount(totalAccount))
         },
-        getTabbarIndexDispatch(index) {
-            dispatch(actionTypes.setIndex(index))
+        getCompressedDataDispatch(data) {
+            dispatch(actions.setCompressedData(data))
         }
     }
 }

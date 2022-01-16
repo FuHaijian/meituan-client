@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from "react"
-import { useHistory } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 import { connect } from "react-redux"
 import * as classifyActions from './store/actionCreators'
 import * as mainActions from '../Main/store/actionCreators'
@@ -20,6 +20,8 @@ const Classify = (props) => {
     let [page, setPage] = useState(1)
     const [type, setType] = useState(1)
     const history = useHistory()
+    let { pathname } = useLocation()
+    let typeParams = pathname.replace('/home/classify', '') || undefined
     // action
     const { 
         getClassifyPageDataDispatch, 
@@ -41,13 +43,17 @@ const Classify = (props) => {
         })
     }
     const gotoShoppingCart = () => {
-        setIndex(2)
         history.push('/home/shoppingcart')
     }
     // 页面初始化
     useEffect(() => {
+        setIndex(1)
         if(!classifyPageData.length) {
             getClassifyPageDataDispatch()
+        }
+        if(typeParams) {
+            typeParams = typeParams.replace('/', '') || undefined
+            setType(typeParams)
         }
     }, [])
     // 加载更多数据
@@ -64,7 +70,7 @@ const Classify = (props) => {
             <div className="container__goodsClassify">
                 <div className="container__goodsClassify-menu">
                     {/* 垂直式分类 */}
-                    <MenuBar menuData={menuData} changeType={setType}/>
+                    <MenuBar menuData={menuData} changeType={setType} type={type}/>
                 </div>
                 <div className="container__goodsClassify-goods">
                     {/* 横移式分类 */}

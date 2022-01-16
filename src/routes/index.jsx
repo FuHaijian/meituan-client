@@ -71,10 +71,10 @@ export default [{
                
             ]
         },
-        {
-            path: '/error',
-            component: SuspenseComponent(ErrorPage)
-        },
+        // {
+        //     path: '/error',
+        //     component: SuspenseComponent(ErrorPage)
+        // },
     ]
 }]
 

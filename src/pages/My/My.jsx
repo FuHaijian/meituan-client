@@ -23,7 +23,8 @@ const My = (props) => {
     const { 
         getMyPageDataDispatch,
         getSelectedGoodsDisPatch: setCartInfo,
-        getTotalAccountDispatch: setTotalAccount
+        getTotalAccountDispatch: setTotalAccount,
+        getTabbarIndexDiapatch: setIndex
     } = props
     const handlePullUp = () => {
         setPage(++page)
@@ -32,12 +33,13 @@ const My = (props) => {
 
     }
     const getRecommendListData = async() => {
-        await reqrecommend()
+        await reqrecommend(page)
         .then(res => {
             setList([...list, ...res.data.data.list])
         })
     }
     useEffect(() => {
+        setIndex(3)
         if(!myPageData.length) {
             getMyPageDataDispatch()
         }
@@ -94,6 +96,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         getTotalAccountDispatch(account) {
             dispatch(mainActions.setTotalAccount(account))
+        },
+        getTabbarIndexDiapatch(index) {
+            dispatch(mainActions.setIndex(index))
         }
     }
 } 

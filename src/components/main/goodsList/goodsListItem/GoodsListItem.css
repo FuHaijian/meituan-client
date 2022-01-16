@@ -37,7 +37,7 @@
     height: 14px;
     background-color: #ff1c00;
     display: inline;
-    padding: 1px;
+    padding: 0 2px;
     margin-right: 4px;
     color: #fff;
     border-radius: 3px;
@@ -46,8 +46,9 @@
     margin-top: 9px;
     background-color: #fffbd6;
     display: inline;
-    padding: 2px;
+    padding: 0 2px;
     font-size: 10px;
+    color: #776c47;
 }
 .description__price {
     color: #fe0100;

@@ -1,26 +1,30 @@
 // 导入所有接口方法
-import Axios from './axios'
+// import Axios from './axios'
+import Ajax from './axios'
 
 export const reqmain = () => {
-    return Axios('/home/main')
+    return Ajax('/home/main')
 }
 
 export const reqlist = (page) => {
-    return Axios('/home/list', {page})
+    return Ajax('/home/list', {page})
 }
 
-export const reqrecommend = () => {
-    return Axios('/home/recommend')
+export const reqrecommend = (page) => {
+    return Ajax('/home/recommend', {page})
 }
 
 export const reqmypagedata = () => {
-    return Axios('/home/my')
+    return Ajax('/home/my')
 }
 
 export const reqclassify = () => {
-    return Axios('/home/classify')
+    return Ajax('/home/classify')
 }
 
 export const reqclassifygoodsdata = (page, type) => {
-    return Axios('/home/classify/goodsData', {page, type})
+    return Ajax('/home/classify/goodsData', {page, type})
+}
+export const reqgoodsdetail = (id) => {
+    return Ajax(`/detail/${id}`)
 }
