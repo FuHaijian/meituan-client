@@ -50,7 +50,12 @@ router.get('/home/list', async(ctx) => {
     })
     if(page == 1) {
         data = {
-            "list": [...ExampleData.ExampleGoodsData, ...MockData.list]
+            "list": [
+                ExampleData.ExampleGoodsData[0],
+                ExampleData.ExampleGoodsData[1], 
+                ExampleData.ExampleGoodsData[2], 
+                ...MockData.list
+            ]
         } 
     }else {
         data = MockData
@@ -76,7 +81,12 @@ router.get('/home/recommend', async(ctx) => {
     })
     if(page == 1) {
         data = {
-            list: [...ExampleData.ExampleGoodsData, ...MockData.list] 
+            list: [
+                ExampleData.ExampleGoodsData[0],
+                ExampleData.ExampleGoodsData[1], 
+                ExampleData.ExampleGoodsData[2], 
+                ...MockData.list
+            ] 
         }
     }else {
         data = MockData
@@ -108,7 +118,12 @@ router.get('/home/classify/goodsData', async(ctx) => {
     })
     if(page == 1) {
         data = {
-            list: [...ExampleData.ExampleGoodsData, ...MockData.list]
+            list: [
+                ExampleData.ExampleGoodsData[0],
+                ExampleData.ExampleGoodsData[1], 
+                ExampleData.ExampleGoodsData[2], 
+                ...MockData.list
+            ]
         } 
     }else {
         data = MockData
@@ -142,6 +157,9 @@ app
     .use(router.routes())
     .use(router.allowedMethods())
 
+// app.listen(9090, () => {
+//     console.log('server is running in port 9090');
+// })
 app.listen(1314, () => {
     console.log('server is running in port 1314');
 })

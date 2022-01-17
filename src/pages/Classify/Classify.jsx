@@ -66,7 +66,7 @@ const Classify = (props) => {
     }, [type])
     return (
         <div className="classify__container">
-            <SearchBar/>
+            <SearchBar gotoSearch={() => history.push('/search')}/>
             <div className="container__goodsClassify">
                 <div className="container__goodsClassify-menu">
                     {/* 垂直式分类 */}
@@ -79,19 +79,11 @@ const Classify = (props) => {
                     <GoodsList 
                         GoodsListData={list} 
                         getMore={setPage} 
-                        page={page} 
-                        totalAccount={totalAccount}
-                        setCartInfo={setCartInfo} 
-                        setTotalAccount={setTotalAccount}
-                        selectedGoods={selectedGoods}
+                        page={page}
                     />
                 </div>
             </div>
-            <ShoppingCartComponent 
-                totalAccount={totalAccount}
-                selectedGoods={selectedGoods}
-                goToCart={() => gotoShoppingCart()}
-            />
+            <ShoppingCartComponent />
         </div>
     )
 } 

@@ -13,33 +13,28 @@ import SnapUpGoods from '@/components/main/snapUpGoods/SnapUpGoods'
 import SpecialGoods from '@/components/main/specialGoods/SpecialGoods'
 import MenuBar_Top from '@/components/main/menuBar/menuBar_Top/MenuBar_Top'
 import ShoppingCartComponent from '@/components/shoppingCartComponent/ShoppingCartComponent'
+import TipPopup from '../../common/tipPopup/TipPopup'
 
 
 import './Main.css'
 
 const Main = (props) => {
     // 状态
-    const { mainData, selectedGoods, totalAccount } = props
+    const { 
+        mainData, 
+    } = props
     const { 
         menuBarData={"list1":[],"list2":[],"list4":[]}, 
-        specialGoodsData, 
+        specialGoodsData,
         SnapUpGoodsData,
-        menuBar_TopData,
-        compressedData
+        menuBar_TopData
     } = mainData
-    console.log(compressedData, '_+_+_+_+');
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
     const [navBarFixed, setNavBarFixed] = useState(false)
     const [menuBarFixed, setMenuBarFixed] = useState(false)
-    
     // actions 
-    const { 
-        getMainDataDispatch, 
-        getSelectedGoodsDisPatch:setCartInfo,
-        getTotalAccountDispatch:setTotalAccount,
-        getCompressedDataDispatch: changeCompressedData
-    } = props
+    const { getMainDataDispatch } = props
     const history = useHistory()
     const fetchList = () => {
         api.reqlist(page)
@@ -96,16 +91,7 @@ const Main = (props) => {
                         {/* 特价商品 */}
                         <SpecialGoods SpecialGoodsData={specialGoodsData} />
                         {/* 商品列表 */}
-                        <GoodsList 
-                            GoodsListData={list} 
-                            setCartInfo={setCartInfo}
-                            selectedGoods={selectedGoods}
-                            totalAccount={totalAccount}
-                            setTotalAccount={setTotalAccount}
-                            changeCompressedData={changeCompressedData}
-                            compressedData={compressedData}
-                            goToDetail={(id) => history.push(`/detail/${id}`)}
-                        />
+                        <GoodsList GoodsListData={list} />
                     </div>
                 </div>
             </Scroll>
@@ -115,42 +101,26 @@ const Main = (props) => {
             </div>
             <div style={menuBarFixed?{display:""}:{display:"none"}}>
                 <MenuBar_Top 
-                    menuBarData={menuBar_TopData} 
+                    menuBarData={menuBar_TopData}
                     menuBarFixed={menuBarFixed} 
                 />
             </div>
             {/* 购物车组件 */}
-            <ShoppingCartComponent 
-                totalAccount={totalAccount}
-                selectedGoods={selectedGoods}
-                setTotalAccount={setTotalAccount}
-                goToCart={() => history.push('/home/shoppingcart')}
-            />
+            <ShoppingCartComponent />
+            {/* <TipPopup isDisplay={true}/> */}
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        mainData: state.main.maindata,
-        selectedGoods: state.main.selectedGoods,
-        totalAccount: state.main.totalAccount,
-        compressedData: state.main.compressedData
+        mainData: state.main.maindata
     }
 }
 const mapStateToDisPatch = (dispatch) => {
     return {
         getMainDataDispatch() {
             dispatch(actions.getMainData())
-        },
-        getSelectedGoodsDisPatch(goodsList) {
-            dispatch(actions.setSelectedGoods(goodsList))
-        },
-        getTotalAccountDispatch(totalAccount) {
-            dispatch(actions.setTotalAccount(totalAccount))
-        },
-        getCompressedDataDispatch(data) {
-            dispatch(actions.setCompressedData(data))
         }
     }
 }

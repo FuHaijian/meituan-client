@@ -40,7 +40,7 @@
     font-size: 15px;
     color: #f40000;
     font-weight: 700;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .goodsItem__desc-buttom {
     position: absolute;
@@ -52,4 +52,21 @@
     border-radius: 20px;
     line-height: 25px;
     text-align: center;
+}
+.selectedGoodsItem__goodsInfo_buttom {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    height: 25px;
+    width: 80px;
+    display: flex;
+}
+.goodsNum {
+    font-size: 13px;
+    font-weight: 700;
+}
+.addButtom, .subButtom {
+    width: 23px;
+    height: 23px;
+    margin: 0 7px;
 }

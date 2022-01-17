@@ -28,10 +28,11 @@ const Container = styled.div`
     
 `
 
-const SearchBar = () => {
+const SearchBar = (props) => {
+    const { gotoSearch } = props
     return (
         <Container>
-            <div className="container__search">
+            <div className="container__search" onClick={() => gotoSearch()}>
                 <img src={SearchIcon} alt="" className="search-icon" />
                 <div className="search-desc">牛奶</div>
             </div>

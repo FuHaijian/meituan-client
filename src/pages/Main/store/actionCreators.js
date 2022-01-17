@@ -30,9 +30,15 @@ export const setIndex = (data) => {
 }
 
 export const setCompressedData = (data) => {
-    // console.log(data, '+++++');
     return {
         type: actionType.SET_COMPRESSED_DATA,
+        data
+    }
+}
+
+export const setIsSelected = (data) => {
+    return {
+        type: actionType.SET_ISSELECTED,
         data
     }
 }
@@ -47,6 +53,13 @@ export const setSelectedGoods = (data) => {
 export const setTotalAccount = (data) => {
     return {
         type: actionType.SET_TOTAL_ACCOUNT,
+        data
+    }
+}
+
+export const setTotalNum = (data) => {
+    return {
+        type: actionType.SET_TOTAL_NUM,
         data
     }
 }

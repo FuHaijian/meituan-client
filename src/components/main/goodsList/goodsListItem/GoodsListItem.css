@@ -67,3 +67,28 @@
     line-height: 24px;
     background-color: #ffd202;
 }
+.oprateNum {
+    position: absolute;
+    bottom: 10px;
+    right: 0px;
+    height: 25px;
+    width: 90px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.oprateNum img {
+    width: 20px;
+    height: 20px;
+}
+.goodsNum {
+    font-size: 15px;
+    font-weight: 700;
+}
+.addNum {
+    margin-left: 5px;
+}
+.subNum {
+    margin-right: 5px;
+}

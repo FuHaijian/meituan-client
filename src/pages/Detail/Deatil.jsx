@@ -48,7 +48,7 @@ const Detail = (props) => {
     const getGoodsDetail = async () => {
         await reqgoodsdetail(ID)
             .then(res => {
-                console.log(res.data.data, '+++');
+                // console.log(res.data.data, '+++');
                 setGoodsData(res.data.data)
             })
     }

@@ -1,13 +1,11 @@
 import React from "react"
-import RecommendListItem from './recommendListItem/RecommendListItem.jsx'
+import RecommendListItem from './recommendListItem/RecommendListItem'
 
 import './RecommendList.css'
 
 const  RecommendList = (props) => {
     // state 
-    const { recommendList=[], selectedGoods, totalAccount } = props
-    // action 
-    const { setCartInfo, setTotalAccount } = props
+    const { recommendList=[] } = props
     return (
         <div className="recommend__container">
             <div className="recommend__container_title">
@@ -19,10 +17,6 @@ const  RecommendList = (props) => {
                     <RecommendListItem 
                         key={index} 
                         goodData={item}
-                        selectedGoods={selectedGoods}
-                        totalAccount={totalAccount}
-                        setCartInfo={setCartInfo}
-                        setTotalAccount={setTotalAccount}
                     />
                 ):""
             }

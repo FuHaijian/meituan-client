@@ -15,7 +15,7 @@ const debounce = (func, delay) => {
 //说明：javascript的加法结果会有误差，在两个浮点数相加的时候会比较明显。这个函数返回较为精确的加法结果。
 //调用：accAdd(arg1,arg2)
 //返回值：arg1加上arg2的精确结果
-function floatAdd(arg1,arg2){
+const floatAdd = (arg1,arg2) => {
   var r1,r2,m;
   try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
   try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
@@ -27,7 +27,7 @@ function floatAdd(arg1,arg2){
 //说明：javascript的加法结果会有误差，在两个浮点数相加的时候会比较明显。这个函数返回较为精确的减法结果。
 //调用：accSub(arg1,arg2)
 //返回值：arg1减去arg2的精确结果
-function floatSub(arg1,arg2){
+const floatSub = (arg1,arg2) => {
   var r1,r2,m,n;
   try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}
   try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}
@@ -38,5 +38,32 @@ function floatSub(arg1,arg2){
   return ((arg1*m-arg2*m)/m).toFixed(n);
 }
 
+/**
+ * @param arr 
+ * 数组去重
+ */
+const uniq = (array) => {
+  var temp = [];
+  for(var i = 0; i < array.length; i++) {
+      if(array.indexOf(array[i]) == i){
+          temp.push(array[i])
+      }
+  }
+  return temp;
+}
 
-export { debounce, floatSub, floatAdd }
+/**
+ * 
+ * @param {} item 
+ * @param {} arr 
+ * @returns 
+ * 删除数组指定元素
+ */
+const arrDelete = (item, arr=[]) => {
+  return arr.filter(i => {
+    return i.id != item.id
+  })
+} 
+
+
+export { debounce, floatSub, floatAdd, uniq, arrDelete }

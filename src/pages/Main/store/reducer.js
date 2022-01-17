@@ -9,12 +9,15 @@ const defaultstate = {
     selectedGoods: [],
     // 总金额
     totalAccount: 0,
+    // 总数量
+    totalNum: 0,
     // 购物车数据代表
-    compressedData: {}
+    compressedData: {},
+    // 已选中的商品
+    isSelected: {}
 }
 
 const reducer = (state = defaultstate, action) => {
-    // console.log(action.data, '{{{{{{');
     switch (action.type) {
         case actionTypes.CHANGE_MAINDATA:
             return {...state, maindata: action.data }
@@ -24,8 +27,12 @@ const reducer = (state = defaultstate, action) => {
             return {...state, index: action.data }
         case actionTypes.SET_TOTAL_ACCOUNT:
             return {...state, totalAccount: action.data }
+        case actionTypes.SET_TOTAL_NUM:
+            return {...state, totalNum: action.data }
         case actionTypes.SET_COMPRESSED_DATA:
             return {...state, compressedData: action.data }
+        case actionTypes.SET_COMPRESSED_DATA:
+            return {...state, isSelected: action.data }
         default:
             return state;
     }

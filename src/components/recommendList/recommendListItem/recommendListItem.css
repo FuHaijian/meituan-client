@@ -63,3 +63,28 @@
     line-height: 30px;
     text-align: center;
 }
+.recommend__oprateNum {
+    position: absolute;
+    bottom: 15px;
+    right: 5px;
+    height: 25px;
+    width: 90px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.recommend__oprateNum img {
+    width: 20px;
+    height: 20px;
+}
+.recommend__goodsNum {
+    font-size: 15px;
+    font-weight: 700;
+}
+.recommend__addNum {
+    margin-left: 5px;
+}
+.recommend__subNum {
+    margin-right: 5px;
+}

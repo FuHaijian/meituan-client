@@ -63,13 +63,7 @@ const ShoppingCart = (props) => {
                         goToShopping={() => history.push('/home/main')}
                     />
                     {/* 商品推荐 */}
-                    <RecommendList 
-                        recommendList={list} 
-                        selectedGoods={selectedGoods}
-                        totalAccount={totalAccount}
-                        setCartInfo={setCartInfo}
-                        setTotalAccount={setTotalAccount}
-                    /> 
+                    <RecommendList recommendList={list}/> 
                 </div>
             </Scroll>
         </div>
