@@ -2,25 +2,26 @@ import React, { memo, useEffect, useState } from "react"
 import { connect } from "react-redux"
 import { useHistory } from "react-router-dom"
 import Scroll from '@/baseUI/scroll'
+import { forceCheck } from "react-lazyload"
 import * as mainActionTypes from '../Main/store/actionCreators'
 import NavBar from '@/components/shoppingCart/navBar/NavBar.jsx'
 import RecommendList from '@/components/recommendList/RecommendList'
 import SelectedGoodsList from '@/components/shoppingCart/selectedGoodsList/SelectedGoodsList'
-import { forceCheck } from "react-lazyload"
+import ShoppingCartTabbar from '@/components/shoppingCart/shoppingCartTabbar/ShoppingCartTabbar'
 
 import './ShoppingCart.css'
 import { reqrecommend } from "@/api"
 
 const ShoppingCart = (props) => {
     // state 
-    const { selectedGoods, totalAccount } = props
+    const { selectedGoods } = props
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
+    let [isChange, setIsChange] = useState(false)
     // action 
     const { 
         getIndexDispatch: setIndex,
-        getSelectedGoodsDisPatch: setCartInfo,
-        getTotalAccountDispatch: setTotalAccount
+        getSelectedGoodsDisPatch: setCartInfo
     } = props
     const history = useHistory()
     // 上拉加载更多
@@ -58,22 +59,22 @@ const ShoppingCart = (props) => {
                <div> 
                     {/* 已选商品列表 */}
                     <SelectedGoodsList
-                        selectedGoodsData={selectedGoods}
-                        setCartInfo={setCartInfo}
+                        isChange_List={isChange}
+                        setIsChange_List={setIsChange}
                         goToShopping={() => history.push('/home/main')}
                     />
                     {/* 商品推荐 */}
                     <RecommendList recommendList={list}/> 
                 </div>
             </Scroll>
+            <ShoppingCartTabbar/>
         </div>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        selectedGoods: state.main.selectedGoods,
-        totalAccount: state.main.totalAccount
+        selectedGoods: state.main.selectedGoods
     }
 }
 
@@ -84,9 +85,6 @@ const mapStateToDispatch = (dispatch) => {
         },
         getSelectedGoodsDisPatch(GoodsList) {
             dispatch(mainActionTypes.setSelectedGoods(GoodsList))
-        },
-        getTotalAccountDispatch(account) {
-            dispatch(mainActionTypes.setTotalAccount(account))
         }
     }
 }

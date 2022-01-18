@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { connect } from "react-redux"
-import { floatAdd, floatSub, uniq, arrDelete } from '@/api/utils.js'
+import { floatAdd, floatSub} from '@/api/utils.js'
 import * as mainActions from '@/pages/Main/store/actionCreators'
 import AddIcon from '@/assets/icon/add.png'
 import SubIcon from '@/assets/icon/sub.png'
@@ -9,49 +9,56 @@ import SelectedIcon from '@/assets/icon/selected.png'
 import './SelectedGoodsItem.css'
 
 const SelectedGoodsItem = (props) => {
+    const [isChange,setIsChange] = useState(false)
     let { 
         goodData={},
-        compressedData,
         selectedGoods,
         totalNum,
         totalAccount,
-        isSelected
+        isSelected,
+        isChange_List
     } = props
     const {
         setTotalNum,
         setTotalAccount,
         setCartInfo,
-        setCompressedData,
-        setIsSelected
+        setIsSelected,
+        setIsChange_List
     } = props
-    console.log(isSelected, '----');
+    var index = selectedGoods.findIndex(item => item.id == goodData.id)
     const changeShoppingCart = (good, price) => {
         if(price > 0) {
-            compressedData[good.id] = compressedData[good.id] > 0?compressedData[good.id] + 1 : 1
+            isSelected[good.id] = isSelected[good.id]?isSelected[good.id]:true
              // 改变总数 和 总金额
             setTotalAccount(floatAdd(totalAccount, price))
             setTotalNum(totalNum + 1)
-            // 数组添加元素并去重
-            selectedGoods = uniq([good, ...selectedGoods])
+            // 数组添加元素
+            if(index != -1) {
+                selectedGoods[index]["num"]++
+            } else {
+                good["num"] = 1
+                selectedGoods = [good, ...selectedGoods]
+            }
         } else {
-            compressedData[good.id] = compressedData[good.id] > 0?compressedData[good.id] - 1 : 1
+            -- selectedGoods[index].num 
             // 判断是否为0,为零则删除商品 
-            if(compressedData[good.id] == 0) {
-                delete compressedData[good.id]
-                selectedGoods = arrDelete(good, selectedGoods)
+            if(selectedGoods[index].num == 0) {
+                delete isSelected[good.id]
+                selectedGoods.splice(index, 1)
             }
             // 改变总数 和 总金额
             setTotalAccount(floatSub(totalAccount, -price))
             setTotalNum(totalNum - 1)
         }
         // 改变单个数量
-        setCompressedData(compressedData)
+        setIsSelected(isSelected)
         setCartInfo(selectedGoods)
+        setIsChange_List(!isChange_List)
     }
     const changeIsSelected = (id) => {
-        console.log(isSelected[id], '++++');
         isSelected[id] = !isSelected[id]
-       setIsSelected(isSelected)
+        setIsSelected(isSelected)
+        setIsChange(!isChange)
     }
     return (
         <div className="selectedGoodsItem">
@@ -88,7 +95,7 @@ const SelectedGoodsItem = (props) => {
                 <div className="selectedGoodsItem__goodsInfo_buttom">
                     <img src={SubIcon} className="subButtom" 
                         onClick={() => changeShoppingCart(goodData, -goodData.price)}/>
-                     <div className="goodsNum">{compressedData[goodData.id]}</div>
+                     <div className="goodsNum">{goodData.num}</div>
                     <img src={AddIcon} className="addButtom" 
                         onClick={() => changeShoppingCart(goodData, goodData.price)}/>
                 </div>
@@ -101,7 +108,6 @@ const mapStateToProps = (state) => {
     return {
         selectedGoods: state.main.selectedGoods,
         totalAccount: state.main.totalAccount,
-        compressedData: state.main.compressedData,
         totalNum: state.main.totalNum,
         isSelected: state.main.isSelected
     }
@@ -109,9 +115,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCompressedData(data) {
-            dispatch(mainActions.setCompressedData(data))
-        },
         setIsSelected(data) {
             dispatch(mainActions.setIsSelected(data))
         },

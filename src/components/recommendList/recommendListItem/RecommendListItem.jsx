@@ -2,7 +2,7 @@ import React from "react"
 import LazyLoad from "react-lazyload"
 import { useHistory } from "react-router-dom"
 import loading from '@/assets/images/loading.gif'
-import { floatAdd, floatSub, uniq, arrDelete } from '@/api/utils.js'
+import { floatAdd, floatSub } from '@/api/utils.js'
 import * as mainActions from '@/pages/Main/store/actionCreators'
 import { connect } from "react-redux"
 import SubIcon from '@/assets/icon/sub.png'
@@ -13,47 +13,49 @@ import './recommendListItem.css'
 
 const RecommendListItem = (props) => {
     let { 
-        goodData,
+        goodData={},
         selectedGoods,
         totalAccount,
-        compressedData,
         totalNum,
         isSelected
     } = props
     // action 
     const { 
-        setCompressedData,
         setCartInfo, 
         setTotalAccount,
         setTotalNum,
         setIsSelected
      } = props
     const history = useHistory()
+    var index = selectedGoods.findIndex(item => 
+        item.id == goodData.id
+    )
     const changeShoppingCart = (good, price) => {
         if(price > 0) {
-            compressedData[good.id] = compressedData[good.id] > 0?compressedData[good.id] + 1 : 1
             isSelected[good.id] = isSelected[good.id]?isSelected[good.id]:true
              // 改变总数 和 总金额
             setTotalAccount(floatAdd(totalAccount, price))
             setTotalNum(totalNum + 1)
-            // 数组添加元素并去重
-            selectedGoods = uniq([good, ...selectedGoods])
+            // 数组添加元素
+            if(index != -1) {
+                selectedGoods[index]["num"]++
+            } else {
+                good["num"] = 1
+                selectedGoods = [good, ...selectedGoods]
+            }
         } else {
-            compressedData[good.id] = compressedData[good.id] > 0?compressedData[good.id] - 1 : 1
+            selectedGoods[index]["num"] --
             // 判断是否为0,为零则删除商品 
-            if(compressedData[good.id] == 0) {
-                delete compressedData[good.id]
+            if(selectedGoods[index]["num"] == 0) {
                 delete isSelected[good.id]
-                selectedGoods = arrDelete(good, selectedGoods)
+                selectedGoods.splice(index, 1)
             }
             // 改变总数 和 总金额
             setTotalAccount(floatSub(totalAccount, -price))
             setTotalNum(totalNum - 1)
         }
         // 改变单个数量
-        isSelected = compressedData
         setIsSelected(isSelected)
-        setCompressedData(compressedData)
         setCartInfo(selectedGoods)
     }
     return (
@@ -89,11 +91,11 @@ const RecommendListItem = (props) => {
                     ￥{goodData.price}
                 </div>
                 {
-                    compressedData[goodData.id] > 0?
+                    selectedGoods[index]?
                     <div className="recommend__oprateNum">
                         <img src={SubIcon} className="recommend__subNum" 
                             onClick={() => changeShoppingCart(goodData, -goodData.price)} />
-                        <span className="recommend__goodsNum">{compressedData[goodData.id]}</span>
+                        <span className="recommend__goodsNum">{selectedGoods[index].num}</span>
                         <img src={AddIcon} className="recommend__addNum" 
                             onClick={() => changeShoppingCart(goodData, goodData.price)} />
                     </div>
@@ -112,7 +114,6 @@ const mapStateToProps = (state) => {
     return {
         selectedGoods: state.main.selectedGoods,
         totalAccount: state.main.totalAccount,
-        compressedData: state.main.compressedData,
         isSelected: state.main.isSelected,
         totalNum: state.main.totalNum
     }
@@ -120,9 +121,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCompressedData(data) {
-            dispatch(mainActions.setCompressedData(data))
-        },
         setCartInfo(goodsList) {
             dispatch(mainActions.setSelectedGoods(goodsList))
         }, 

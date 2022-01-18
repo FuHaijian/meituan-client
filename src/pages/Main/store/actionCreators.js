@@ -29,13 +29,6 @@ export const setIndex = (data) => {
     }
 }
 
-export const setCompressedData = (data) => {
-    return {
-        type: actionType.SET_COMPRESSED_DATA,
-        data
-    }
-}
-
 export const setIsSelected = (data) => {
     return {
         type: actionType.SET_ISSELECTED,

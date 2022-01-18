@@ -4,7 +4,6 @@ const app = new Koa()
 const cors = require('koa2-cors')
 const Mock = require('mockjs')
 const Random = Mock.Random
-
 const serve = require('koa-static');
 
 const MainData = require('./Data/mainData/MianData.json')

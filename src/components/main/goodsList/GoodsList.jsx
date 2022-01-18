@@ -15,7 +15,7 @@ const GoodsList = (props) => {
                     <GoodsListItem 
                         good={item}
                         key={index}
-                        index={index}
+                        i={index}
                     />)
             }
         </div>

@@ -38,32 +38,4 @@ const floatSub = (arg1,arg2) => {
   return ((arg1*m-arg2*m)/m).toFixed(n);
 }
 
-/**
- * @param arr 
- * 数组去重
- */
-const uniq = (array) => {
-  var temp = [];
-  for(var i = 0; i < array.length; i++) {
-      if(array.indexOf(array[i]) == i){
-          temp.push(array[i])
-      }
-  }
-  return temp;
-}
-
-/**
- * 
- * @param {} item 
- * @param {} arr 
- * @returns 
- * 删除数组指定元素
- */
-const arrDelete = (item, arr=[]) => {
-  return arr.filter(i => {
-    return i.id != item.id
-  })
-} 
-
-
-export { debounce, floatSub, floatAdd, uniq, arrDelete }
+export { debounce, floatSub, floatAdd }
