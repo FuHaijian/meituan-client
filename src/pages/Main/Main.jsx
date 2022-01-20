@@ -15,36 +15,40 @@ import MenuBar_Top from '@/components/main/menuBar/menuBar_Top/MenuBar_Top'
 import ShoppingCartComponent from '@/components/shoppingCartComponent/ShoppingCartComponent'
 import TipPopup from '../../common/tipPopup/TipPopup'
 
-
 import './Main.css'
 
 const Main = (props) => {
-    // 状态
-    const { 
-        mainData, 
-    } = props
-    const { 
-        menuBarData={"list1":[],"list2":[],"list4":[]}, 
+    // state
+    const { mainData } = props
+    const {
+        menuBarData = { "list1": [], "list2": [], "list4": [] },
         specialGoodsData,
         SnapUpGoodsData,
         menuBar_TopData
     } = mainData
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     const [navBarFixed, setNavBarFixed] = useState(false)
     const [menuBarFixed, setMenuBarFixed] = useState(false)
     // actions 
     const { getMainDataDispatch } = props
     const history = useHistory()
-    const fetchList = () => {
-        api.reqlist(page)
+    const fetchList = async () => {
+        await api.reqlist(page)
             .then(res => {
                 setList([...list, ...res.data.data.list])
             })
     }
     // 上拉加载更多
-    const handlePullUp = () => {
-        setPage(++page)
+    const handlePullUp = async () => {
+        if (!isLoading) {
+            await setTimeout(() => {
+                setIsLoading(true)
+                setPage(++page)
+            }, 1000)
+        }
+        setIsLoading(false)
     }
     // 下拉刷新
     const handlePullDown = () => {
@@ -81,8 +85,8 @@ const Main = (props) => {
                 }
             >
                 <div>
-                     {/* 头部 */}
-                    <NavBar goToSearch={() => history.push('/search')} navBarFixed={navBarFixed}/>
+                    {/* 头部 */}
+                    <NavBar goToSearch={() => history.push('/search')} navBarFixed={navBarFixed} />
                     {/* 商品分类及活动入口 */}
                     <MenuBar menuBarData={menuBarData} />
                     <div className='main-padding'>
@@ -96,18 +100,18 @@ const Main = (props) => {
                 </div>
             </Scroll>
             {/* 头部悬挂组件 */}
-            <div style={navBarFixed?{display:""}:{display:"none"}}>
-                <NavBar goToSearch={() => history.push('/search')} navBarFixed={navBarFixed}/>
+            <div style={navBarFixed ? { display: "" } : { display: "none" }}>
+                <NavBar goToSearch={() => history.push('/search')} navBarFixed={navBarFixed} />
             </div>
-            <div style={menuBarFixed?{display:""}:{display:"none"}}>
-                <MenuBar_Top 
+            <div style={menuBarFixed ? { display: "" } : { display: "none" }}>
+                <MenuBar_Top
                     menuBarData={menuBar_TopData}
-                    menuBarFixed={menuBarFixed} 
+                    menuBarFixed={menuBarFixed}
                 />
             </div>
             {/* 购物车组件 */}
             <ShoppingCartComponent />
-            {/* <TipPopup isDisplay={true}/> */}
+            {/* <TipPopup isDisplay={isLoading} /> */}
         </div>
     )
 }

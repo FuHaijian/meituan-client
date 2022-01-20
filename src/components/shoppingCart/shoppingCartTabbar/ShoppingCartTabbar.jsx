@@ -8,7 +8,7 @@ const Bar = styled.div`
     width: 100vw;
     height: 50px;
     position: fixed;
-    bottom: 52px;
+    bottom: 50px;
     background-color: #fff;
     display: flex;
     padding: 0 10px;
@@ -18,7 +18,7 @@ const SelectedButtom = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    .allSelected_TRUE {
+    .allSelected_FALSE {
         height: 22px;
         width: 22px;
         border-radius: 50%;
@@ -42,9 +42,10 @@ const TotalAccount = styled.div`
     text-align: right;
     font-weight: 700;
     .totalNum {
-        margin-right: 10px;
+        padding-right: 10px;
         color:#fd0020;
         font-size: 16px;
+        
     }
 `
 const PayButtom = styled.div`
@@ -59,47 +60,58 @@ const PayButtom = styled.div`
 `
 
 const ShoppingCartTabbar = (props) => {
-    let flag = true
-    const { totalNum=0, isSelected={}, totalAccount=0 } = props
-    const [allSelected, setAllSelected] = useState(true)
-    const { setIsSelectedData } = props
+    let { totalNum = 0, totalAccount = 0, selectedGoods, allSelected } = props
+    const { setSelectedGoods, setTotalAccount, setTotalNum, setAllSelected } = props
+    // 改变全选
     const changeSelected = () => {
-        let selectedData = {}
-        // console.log(isSelected, '-=-=-=--');
-        if(flag) {
-            Object.keys(isSelected).forEach(key => {
-                selectedData[key] = true
-            })
-        } else {
-            Object.keys(isSelected).forEach(key => {
-                selectedData[key] = false
-            })
-        }
-        // console.log(selectedData, '___-----');
-        setIsSelectedData(selectedData)
-        setAllSelected(!allSelected) 
-    }
-    const getAllSelected = () => {
-        Object.keys(isSelected).forEach((key) => {
-            // console.log(isSelected[key], '++++++');
-            if(!isSelected[key]) 
-                flag = false
+        isSelectedAll()
+        // 改变状态不同的商品
+        selectedGoods = selectedGoods.map(item => {
+            if (allSelected) {
+                if (item.isSelected) {
+                    totalNum -= item.num
+                    totalAccount -= item.num * item.price
+                }
+
+            } else {
+                if (!item.isSelected) {
+                    totalNum += item.num
+                    totalAccount += item.num * item.price
+                }
+            }
+            item.isSelected = !allSelected
+            return item
         })
-        if(!flag){
-            setAllSelected(false)
-        }  
+        // 全选取反
+        setAllSelected(!allSelected)
+        // 数据修改
+        setTotalNum(totalNum)
+        setTotalAccount(totalAccount)
+        setSelectedGoods(selectedGoods)
     }
-    getAllSelected()
-    useEffect(() => {
-        getAllSelected()
-    }, [isSelected])
+    // 全选矫正
+    const isSelectedAll = () => {
+        let flag = true
+        selectedGoods.map(item => {
+            if (!item.isSelected) {
+                flag = false
+            }
+        })
+        if (!flag) {
+            setAllSelected(false)
+        } else {
+            setAllSelected(true)
+        }
+    }
     return (
         <Bar>
             <SelectedButtom>
                 {
-                    !allSelected
-                        ? <div className="allSelected_TRUE" onClick={() => changeSelected()}></div>
-                        : <img src={SelectedIcon} className="allSelected_FALSE" onClick={() => changeSelected()}></img>
+                    selectedGoods.length == 0 ?
+                        <div className="allSelected_FALSE"></div>
+                        : allSelected
+                            ? <img src={SelectedIcon} className="allSelected_TRUE" onClick={() => changeSelected()}></img>
+                            : <div className="allSelected_FALSE" onClick={() => changeSelected()}></div>
                 }
                 <span className="desc">
                     全选
@@ -108,15 +120,13 @@ const ShoppingCartTabbar = (props) => {
             <TotalAccount>
                 <span className="title">合计：</span>
                 <span className="totalNum">￥{
-                    (allSelected && totalAccount != 0)
-                        ?  totalAccount 
-                        : 0
+                    totalAccount ? totalAccount.toFixed(2) : 0
                 }</span>
             </TotalAccount>
             <PayButtom style={totalNum == 0 ? { backgroundColor: "#faeb7d" } : { backgroundColor: "#ffd105" }}>
                 去支付
                 {
-                    (allSelected && totalNum != 0) ? `(${totalNum})` : ""
+                    totalNum != 0 ? `(${totalNum})` : ""
                 }
             </PayButtom>
         </Bar>
@@ -125,16 +135,26 @@ const ShoppingCartTabbar = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        isSelected: state.main.isSelected,
         totalNum: state.main.totalNum,
-        totalAccount: state.main.totalAccount
+        totalAccount: state.main.totalAccount,
+        selectedGoods: state.main.selectedGoods,
+        allSelected: state.main.allSelected
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setIsSelectedData(data) {
-            dispatch(mainActions.setIsSelected(data))
+        setSelectedGoods(goodsList) {
+            dispatch(mainActions.setSelectedGoods(goodsList))
+        },
+        setTotalAccount(account) {
+            dispatch(mainActions.setTotalAccount(account))
+        },
+        setTotalNum(num) {
+            dispatch(mainActions.setTotalNum(num))
+        },
+        setAllSelected(data) {
+            dispatch(mainActions.setAllSelected(data))
         }
     }
 }

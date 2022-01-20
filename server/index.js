@@ -156,9 +156,6 @@ app
     .use(router.routes())
     .use(router.allowedMethods())
 
-// app.listen(9090, () => {
-//     console.log('server is running in port 9090');
-// })
-app.listen(1314, () => {
-    console.log('server is running in port 1314');
+app.listen(9090, () => {
+    console.log('server is running in port 9090');
 })

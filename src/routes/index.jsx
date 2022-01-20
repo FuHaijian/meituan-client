@@ -1,13 +1,13 @@
 import React, { lazy, Suspense } from 'react';
 import BlankLayout from '../layouts/BlankLayout';
-import { Redirect, Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 const Main = lazy(()=> import('../pages/Main/Main'));
 const Classify = lazy(() => import('../pages/Classify/Classify'))
 const ShoppingCart = lazy(() => import('../pages/ShoppingCart/ShoppingCart'))
 const My = lazy(() => import('../pages/My/My'))
 const Search = lazy(() => import('../pages/Search/Search'))
-const Detail = lazy(() => import('../pages/Detail/Deatil'))
-const ErrorPage = lazy(() => import('../pages/ErrorPage/ErrorPage'))
+const Detail = lazy(() => import('../pages/Detail/Detail'))
+// const ErrorPage = lazy(() => import('../pages/ErrorPage/ErrorPage'))
 import Tabbuttom from '../components/tabbuttom/Tabbuttom'
 
 const SuspenseComponent = Component => props => {
@@ -70,11 +70,7 @@ export default [{
                 },
                
             ]
-        },
-        // {
-        //     path: '/error',
-        //     component: SuspenseComponent(ErrorPage)
-        // },
+        }
     ]
 }]
 

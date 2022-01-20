@@ -1,7 +1,6 @@
 import React from "react";
 import NewsIcon from '@/assets/navbarImg/news.png'
 import searchIcon from '@/assets/navbarImg/search.png'
-import { Link } from "react-router-dom";
 
 import './NavBar.css'
 

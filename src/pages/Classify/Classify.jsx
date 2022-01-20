@@ -14,7 +14,7 @@ import './Classify.css'
 
 const Classify = (props) => {
     // state 
-    const { classifyPageData, totalAccount, selectedGoods, tabberIndex } = props
+    const { classifyPageData } = props
     const { menuData, miniMenuData } = classifyPageData
     const [list, setList] = useState([])
     let [page, setPage] = useState(1)
@@ -90,10 +90,7 @@ const Classify = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        classifyPageData: state.classify.classifyPageData, 
-        totalAccount: state.main.totalAccount,
-        selectedGoods: state.main.selectedGoods,
-        tabberIndex: state.main.index 
+        classifyPageData: state.classify.classifyPageData
     }
 }
 
@@ -101,12 +98,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getClassifyPageDataDispatch() {
             dispatch(classifyActions.getClassifyPageData())
-        },
-        getSelectedGoodsDataDispatch(goodsList) {
-            dispatch(mainActions.setSelectedGoods(goodsList))
-        },
-        getTotalAccountDispatch(account) {
-            dispatch(mainActions.setTotalAccount(account))
         },
         getTabbarIndexDispatch(index) {
             dispatch(mainActions.setIndex(index))

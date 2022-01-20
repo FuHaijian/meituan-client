@@ -7,17 +7,10 @@ import './SelectedGoodsList.css'
 
 const SelectedGoodsList = (props) => {
     const { selectedGoodsData=[]} = props
-    const [isChange_List, setIsChange_List] = useState(false)
-    const [selectedGoods, setSelectedGoods] = useState(JSON.parse(JSON.stringify(selectedGoodsData)))
-    console.log(selectedGoods, '_+_+__+');
-    useEffect(() => {
-        setSelectedGoods(JSON.parse(JSON.stringify(selectedGoodsData)))
-        console.log('9090');
-    }, [selectedGoodsData])
     return (
         <div className="GoodsList__container">
             {
-                !selectedGoods.length
+                !selectedGoodsData.length
                 ?<div className="container-empty_cart">
                     <img src={EmptyCartIcon} className="empty_cart__icon" />
                     <div className="empty_cart__desc">您的购物车还是空的，快去逛逛吧</div>
@@ -25,12 +18,10 @@ const SelectedGoodsList = (props) => {
                 </div>
                 :<div className="container-goodsList">
                     {
-                        selectedGoods.map((item, index) => 
+                        selectedGoodsData.map((item, index) => 
                             <SelectedGoodsItem  
                                 key={index} 
                                 goodData={item} 
-                                isChange_List={isChange_List}
-                                setIsChange_List={setIsChange_List}
                             />
                         )
                     }

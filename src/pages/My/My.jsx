@@ -19,6 +19,7 @@ const My = (props) => {
     const { menuBarData, OrdersOprationButtomData } = myPageData 
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
+    const [isLoading, setIsLoading] = useState(false)
     // action 
     const { 
         getMyPageDataDispatch,
@@ -26,11 +27,16 @@ const My = (props) => {
         getTotalAccountDispatch: setTotalAccount,
         getTabbarIndexDiapatch: setIndex
     } = props
-    const handlePullUp = () => {
-        setPage(++page)
+    const handlePullUp = async() => {
+        if (!isLoading) {
+            await setTimeout(() => {
+                setIsLoading(true)
+                setPage(++page)
+            }, 1000)
+        }
+        setIsLoading(false)
     }
     const handlePullDown = () => {
-
     }
     const getRecommendListData = async() => {
         await reqrecommend(page)

@@ -891,10 +891,10 @@
   "resolved" "https://registry.npmmirror.com/supports-preserve-symlinks-flag/download/supports-preserve-symlinks-flag-1.0.0.tgz"
   "version" "1.0.0"
 
-"swiper@5.4.2":
-  "integrity" "sha512-c6E5kDC3xAhnhdV0omIkDKLr+qNxzMfTO3Nw/T4xNAwSMoJwPvgsRoVzDBEUQbkWqwomHsvcjPMn12VQ6IHDTQ=="
-  "resolved" "https://registry.npmmirror.com/swiper/download/swiper-5.4.2.tgz"
-  "version" "5.4.2"
+"swiper@^5.4.5":
+  "integrity" "sha512-7QjA0XpdOmiMoClfaZ2lYN6ICHcMm72LXiY+NF4fQLFidigameaofvpjEEiTQuw3xm5eksG5hzkaRsjQX57vtA=="
+  "resolved" "https://registry.npmmirror.com/swiper/download/swiper-5.4.5.tgz"
+  "version" "5.4.5"
   dependencies:
     "dom7" "^2.1.5"
     "ssr-window" "^2.0.0"

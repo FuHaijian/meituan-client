@@ -1,12 +1,8 @@
 import React, { memo, useEffect, useState } from "react"
 import { useHistory, useLocation } from "react-router-dom"
-import { connect } from "react-redux"
-import * as mainActions from '../Main/store/actionCreators'
 import Scroll from '@/baseUI/scroll'
 import { reqrecommend, reqgoodsdetail } from '@/api'
 import { forceCheck } from "react-lazyload"
-import PromiseIcon from '@/assets/images/detail2.jpg'
-import DetailIcon from '@/assets/images/detail1.jpg'
 import NavBar from '@/components/Detail/navBar/NavBar'
 import RecommendList from '@/components/recommendList/RecommendList'
 import ImgList from '@/components/Detail/imgList/ImgList'
@@ -16,27 +12,29 @@ import './Detail.css'
 
 const Detail = (props) => {
     // state 
-    const { totalAccount, selectedGoods } = props
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
     const [ID, setID] = useState(1)
     const [goodsData, setGoodsData] = useState({})
-    const {
-        imgList,
-
-    } = goodsData
-    let { pathname } = useLocation()
+    const { imgList } = goodsData    
+    const { pathname } = useLocation()
     let idParams = pathname.replace('/detail', '') || undefined
     const [navBarStyle, setNavBarStyle] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     // actions 
-    const {
-        getSelectedGoodsDispatch: setCartInfo,
-        getTotalAccountDispatch: setTotalAccount
-    } = props
+
     const history = useHistory()
-    const handlePullUp = () => {
-        setPage(++page)
+    // 上拉加载更多
+    const handlePullUp = async() => {
+        if (!isLoading) {
+            await setTimeout(() => {
+                setIsLoading(true)
+                setPage(++page)
+            }, 1000)
+        }
+        setIsLoading(false)
     }
+    // 下拉刷新
     const handlePullDown = () => {
     }
     const getRecommendList = async () => {
@@ -48,7 +46,6 @@ const Detail = (props) => {
     const getGoodsDetail = async () => {
         await reqgoodsdetail(ID)
             .then(res => {
-                // console.log(res.data.data, '+++');
                 setGoodsData(res.data.data)
             })
     }
@@ -58,7 +55,7 @@ const Detail = (props) => {
             setID(idParams)
         }
         getRecommendList()
-    }, [page])
+    }, [page, pathname])
     useEffect(() => {
         getGoodsDetail()
     }, [ID])
@@ -91,15 +88,9 @@ const Detail = (props) => {
                         <div>
                             <ImgList ImgListData={imgList} />
                             <GoodsInfo goodsData={goodsData} />
-                            <img className="detailImg" src={DetailIcon} />
-                            <img className="promiseImg" src={PromiseIcon} />
-                            <RecommendList
-                                recommendList={list}
-                                selectedGoods={selectedGoods}
-                                totalAccount={totalAccount}
-                                setCartInfo={setCartInfo}
-                                setTotalAccount={setTotalAccount}
-                            />
+                            <img className="detailImg" src='http://1.117.162.125:9090/images/detail/detail1.jpg' />
+                            <img className="promiseImg" src="http://1.117.162.125:9090/images/detail/detail2.jpg" />
+                            <RecommendList recommendList={list}/>
                         </div>
                     </Scroll> : <div style={{ fontWeight: 700, marginLeft: "35%", fontSize: "20px" }}>页面错误了...</div>
             }
@@ -108,22 +99,4 @@ const Detail = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        totalAccount: state.main.totalAccount,
-        selectedGoods: state.main.selectedGoods
-    }
-}
-
-const mapDiapatchToProps = (dispatch) => {
-    return {
-        getSelectedGoodsDispatch(goodsList) {
-            dispatch(mainActions.setSelectedGoods(goodsList))
-        },
-        getTotalAccountDispatch(account) {
-            dispatch(mainActions.setTotalAccount(account))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDiapatchToProps)(memo(Detail))
+export default memo(Detail)

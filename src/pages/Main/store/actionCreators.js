@@ -29,9 +29,9 @@ export const setIndex = (data) => {
     }
 }
 
-export const setIsSelected = (data) => {
+export const setAllSelected = (data) => {
     return {
-        type: actionType.SET_ISSELECTED,
+        type: actionType.SET_ALL_SELECTED,
         data
     }
 }

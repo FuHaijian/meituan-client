@@ -14,23 +14,24 @@ import { reqrecommend } from "@/api"
 
 const ShoppingCart = (props) => {
     // state 
-    const { selectedGoods } = props
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
-    let [isChange, setIsChange] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
     // action 
-    const { 
-        getIndexDispatch: setIndex,
-        getSelectedGoodsDisPatch: setCartInfo
-    } = props
+    const { getIndexDispatch: setIndex } = props
     const history = useHistory()
     // 上拉加载更多
-    const handlePullUp = () => {
-        setPage(++page)
+    const handlePullUp = async() => {
+        if (!isLoading) {
+            await setTimeout(() => {
+                setIsLoading(true)
+                setPage(++page)
+            }, 1000)
+        }
+        setIsLoading(false)
     }
     // 下拉刷新
     const handlePullDown = () => {
-        // console.log('+++++');
     }
     const getRecommendListData = async() => {
         await reqrecommend(page)
@@ -58,16 +59,13 @@ const ShoppingCart = (props) => {
             >
                <div> 
                     {/* 已选商品列表 */}
-                    <SelectedGoodsList
-                        isChange_List={isChange}
-                        setIsChange_List={setIsChange}
-                        goToShopping={() => history.push('/home/main')}
+                    <SelectedGoodsList goToShopping={() => history.push('/home/main')}
                     />
                     {/* 商品推荐 */}
                     <RecommendList recommendList={list}/> 
                 </div>
             </Scroll>
-            <ShoppingCartTabbar/>
+            <ShoppingCartTabbar />
         </div>
     )
 }

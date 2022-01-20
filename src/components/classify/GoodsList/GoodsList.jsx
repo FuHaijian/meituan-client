@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, memo } from "react"
 import Scroll from '@/baseUI/scroll'
 import Lazyload, { forceCheck } from "react-lazyload"
 import Loading from '@/assets/images/loading.gif'
@@ -18,49 +18,76 @@ const GoodsList = (props) => {
         GoodsListData = [],
         totalAccount,
         selectedGoods,
-        totalNum,
-        isSelected
+        totalNum
     } = props
     // action 
     const {
         getMore,
         setTotalAccount,
         setTotalNum,
-        setCartInfo,
-        setIsSelected
+        setSelectedGoods,
+        setAllSelected
     } = props
+    const [isLoading, setIsLoading] = useState(false)
     const changeShoppingCart = (good, price) => {
-        let index = selectedGoods.findIndex(item => item.id == good.id )
+        let index = selectedGoods.findIndex(item => item.id == good.id)
         if (price > 0) {
-            isSelected[good.id] = isSelected[good.id] ? isSelected[good.id] : true
             // 改变总数 和 总金额
-            setTotalAccount(floatAdd(totalAccount, price))
-            setTotalNum(totalNum + 1)
-            // 数组添加元素
             if (index != -1) {
-                selectedGoods[index]["num"]++
+                selectedGoods[index].num++
+                if (!selectedGoods[index].isSelected) {
+                    selectedGoods[index].isSelected = true
+                    setTotalAccount(floatAdd(totalAccount, price * selectedGoods[index].num))
+                    setTotalNum(totalNum + selectedGoods[index].num)
+                } else {
+                    setTotalAccount(floatAdd(totalAccount, price))
+                    setTotalNum(totalNum + 1)
+                }
             } else {
                 good["num"] = 1
+                good["isSelected"] = true
                 selectedGoods = [good, ...selectedGoods]
+                setTotalAccount(floatAdd(totalAccount, price))
+                setTotalNum(totalNum + 1)
             }
         } else {
             selectedGoods[index]["num"]--
+            // 选中则改变总数 和 总金额
+            if (selectedGoods[index].isSelected) {
+                setTotalAccount(floatSub(totalAccount, -price))
+                setTotalNum(totalNum - 1)
+            }
             // 判断是否为0,为零则删除商品 
             if (selectedGoods[index]["num"] == 0) {
-                delete isSelected[good.id]
                 selectedGoods.splice(index, 1)
             }
-            // 改变总数 和 总金额
-            setTotalAccount(floatSub(totalAccount, -price))
-            setTotalNum(totalNum - 1)
+
         }
         // 改变单个数量
-        setIsSelected(isSelected)
-        setCartInfo(selectedGoods)
+        setSelectedGoods(selectedGoods)
+        isSelectedAll()
+    }
+    const isSelectedAll = () => {
+        let flag = true
+        selectedGoods.map(item => {
+            if (!item.isSelected)
+                flag = false
+        })
+        if (!flag) {
+            setAllSelected(false)
+        } else {
+            setAllSelected(true)
+        }
     }
     // 上拉加载更多
-    const handlePullUp = () => {
-        getMore(++page)
+    const handlePullUp = async () => {
+        if (!isLoading) {
+            await setTimeout(() => {
+                setIsLoading(true)
+                getMore(++page)
+            }, 1000)
+        }
+        setIsLoading(false)
     }
     // 下拉刷新
     const handlePullDown = () => {
@@ -112,10 +139,10 @@ const GoodsList = (props) => {
                                         ￥{item.price}
                                     </div>
                                     {
-                                        selectedGoods[selectedGoods.findIndex(i => i.id == item.id )] ?
+                                        selectedGoods[selectedGoods.findIndex(i => i.id == item.id)] ?
                                             <div className="selectedGoodsItem__goodsInfo_buttom">
                                                 <img src={SubIcon} className="subButtom" onClick={() => changeShoppingCart(item, -item.price)} />
-                                                <div className="goodsNum">{selectedGoods[selectedGoods.findIndex(i => i.id == item.id )].num}</div>
+                                                <div className="goodsNum">{selectedGoods[selectedGoods.findIndex(i => i.id == item.id)].num}</div>
                                                 <img src={AddIcon} className="addButtom" onClick={() => changeShoppingCart(item, item.price)} />
                                             </div>
                                             : <div
@@ -141,14 +168,13 @@ const mapStateToProps = (state) => {
     return {
         selectedGoods: state.main.selectedGoods,
         totalAccount: state.main.totalAccount,
-        totalNum: state.main.totalNum,
-        isSelected: state.main.isSelected
+        totalNum: state.main.totalNum
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCartInfo(goodsList) {
+        setSelectedGoods(goodsList) {
             dispatch(mainActions.setSelectedGoods(goodsList))
         },
         setTotalAccount(account) {
@@ -157,10 +183,10 @@ const mapDispatchToProps = (dispatch) => {
         setTotalNum(num) {
             dispatch(mainActions.setTotalNum(num))
         },
-        setIsSelected(data) {
-            dispatch(mainActions.setIsSelected(data))
+        setAllSelected(booolean) {
+            dispatch(mainActions.setAllSelected(booolean))
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GoodsList)
+export default connect(mapStateToProps, mapDispatchToProps)(memo(GoodsList))

@@ -11,8 +11,8 @@ const defaultstate = {
     totalAccount: 0,
     // 总数量
     totalNum: 0,
-    // 已选中的商品
-    isSelected: {}
+    // 全选
+    allSelected: true
 }
 
 const reducer = (state = defaultstate, action) => {
@@ -24,11 +24,11 @@ const reducer = (state = defaultstate, action) => {
         case actionTypes.SET_INDEX:
             return {...state, index: action.data }
         case actionTypes.SET_TOTAL_ACCOUNT:
-            return {...state, totalAccount: action.data }
+            return {...state, totalAccount: Number.parseFloat(action.data) }
         case actionTypes.SET_TOTAL_NUM:
-            return {...state, totalNum: action.data }
-        case actionTypes.SET_ISSELECTED:
-            return {...state, isSelected: action.data }
+            return {...state, totalNum: Number.parseInt(action.data) }
+        case actionTypes.SET_ALL_SELECTED:
+            return {...state, allSelected: action.data } 
         default:
             return state;
     }

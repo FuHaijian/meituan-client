@@ -6,24 +6,22 @@ import shoppingCartIcon from '@/assets/images/shoppingCart.png'
 import './ShoppingCartComponent.css'
 
 const shoppingCartComponent = (props) => {
-    const { totalAccount, totalNum } = props
-
+    const { totalAccount = 0, totalNum } = props
     const history = useHistory()
-    const gotoCart = () =>  history.push('/home/shoppingCart')
-
+    const gotoCart = () => history.push('/home/shoppingCart')
     return (
-        <div className="container" style={totalNum > 0?{display:""}:{display:"none"}}>
+        <div className="container" style={totalNum > 0 ? { display: "" } : { display: "none" }}>
             <div className="container__shoppingIcon" onClick={() => gotoCart()}>
                 <img src={shoppingCartIcon} />
                 <div className="container__numIcon">{totalNum}</div>
             </div>
             <div className="container__buttom" onClick={() => gotoCart()}>
                 <div className="container__buttom_totalAmount">
-                    ￥{totalAccount}
+                    ￥{totalAccount ? totalAccount.toFixed(2) : 0}
                 </div>
                 <div className="container__buttom_desc">
                     去支付 {">"}
-                </div> 
+                </div>
             </div>
         </div>
     )
@@ -31,7 +29,7 @@ const shoppingCartComponent = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        totalAccount: state.main.totalAccount, 
+        totalAccount: state.main.totalAccount,
         totalNum: state.main.totalNum
     }
 }

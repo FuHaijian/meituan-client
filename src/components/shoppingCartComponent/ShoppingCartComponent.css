@@ -25,11 +25,11 @@
 .container__numIcon {
     position: absolute;
     top: 0;
-    right: 18px;
-    width: 15px;
-    height: 15px;
+    right: 15px;
+    width: 18px;
+    height: 18px;
     border-radius: 50%;
-    line-height: 15px;
+    line-height: 18px;
     background-color: #fd3200;
     text-align: center;
     color: #fff;
