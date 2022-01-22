@@ -3,11 +3,11 @@ import LazyLoad from "react-lazyload"
 import { connect } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { floatAdd, floatSub } from '@/api/utils.js'
+import _ from 'lodash'
 import * as mainActions from '@/pages/Main/store/actionCreators'
 import loading from '@/assets/images/loading.gif'
 import SubIcon from '@/assets/icon/sub.png'
 import AddIcon from '@/assets/icon/add.png'
-import TipPopup from '@/common/tipPopup/TipPopup'
 
 import './GoodsListItem.css'
 

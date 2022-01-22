@@ -1,4 +1,4 @@
-import{k as Rt,l as Ne,m as Di,g as H,j as Pi,n as it,p as Ri}from"./vendor.7597709e.js";/*!
+import{k as Rt,m as Ne,n as Di,g as H,j as Pi,o as it,p as Ri}from"./vendor.dd7849eb.js";/*!
  * better-normal-scroll v1.15.2
  * (c) 2016-2019 ustbhuangyi
  * Released under the MIT License.

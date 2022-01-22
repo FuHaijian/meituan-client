@@ -8,7 +8,7 @@ import SearchBar from '@/components/classify/searchBar/SearchBar'
 import MenuBar from'@/components/classify/menuBar/MenuBar'
 import MiniClassify from '@/components/classify/miniClassify/MiniClassify'
 import GoodsList from '@/components/classify/GoodsList/GoodsList'
-import ShoppingCartComponent from '../../components/shoppingCartComponent/ShoppingCartComponent'
+import ShoppingCartComponent from '@/components/shoppingCartComponent/ShoppingCartComponent'
 
 import './Classify.css'
 

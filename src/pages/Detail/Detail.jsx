@@ -7,6 +7,7 @@ import NavBar from '@/components/Detail/navBar/NavBar'
 import RecommendList from '@/components/recommendList/RecommendList'
 import ImgList from '@/components/Detail/imgList/ImgList'
 import GoodsInfo from '@/components/Detail/goodsInfo/GoodsInfo'
+import Opration_Tabbar from '../../components/detail/opration_Tabbar/Opration_Tabbar.jsx'
 
 import './Detail.css'
 
@@ -16,16 +17,15 @@ const Detail = (props) => {
     const [list, setList] = useState([])
     const [ID, setID] = useState(1)
     const [goodsData, setGoodsData] = useState({})
-    const { imgList } = goodsData    
+    const { imgList } = goodsData
     const { pathname } = useLocation()
     let idParams = pathname.replace('/detail', '') || undefined
     const [navBarStyle, setNavBarStyle] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
     // actions 
-
     const history = useHistory()
     // 上拉加载更多
-    const handlePullUp = async() => {
+    const handlePullUp = async () => {
         if (!isLoading) {
             await setTimeout(() => {
                 setIsLoading(true)
@@ -67,32 +67,39 @@ const Detail = (props) => {
                 goBack={() => history.goBack()}
                 goToSearch={() => history.push('/search')}
             />
+
             {
                 idParams ?
-                    <Scroll
-                        direction="vertical"
-                        refresh={false}
-                        pullUp={handlePullUp}
-                        pullDown={handlePullDown}
-                        onScroll={
-                            (e) => {
-                                if (e.y < -30) {
-                                    setNavBarStyle(true)
-                                } else {
-                                    setNavBarStyle(false)
+                    <>
+                        <Scroll
+                            direction="vertical"
+                            refresh={false}
+                            pullUp={handlePullUp}
+                            pullDown={handlePullDown}
+                            onScroll={
+                                (e) => {
+                                    if (e.y < -30) {
+                                        setNavBarStyle(true)
+                                    } else {
+                                        setNavBarStyle(false)
+                                    }
+                                    forceCheck()
                                 }
-                                forceCheck()
                             }
-                        }
-                    >
-                        <div>
-                            <ImgList ImgListData={imgList} />
-                            <GoodsInfo goodsData={goodsData} />
-                            <img className="detailImg" src='http://1.117.162.125:9090/images/detail/detail1.jpg' />
-                            <img className="promiseImg" src="http://1.117.162.125:9090/images/detail/detail2.jpg" />
-                            <RecommendList recommendList={list}/>
-                        </div>
-                    </Scroll> : <div style={{ fontWeight: 700, marginLeft: "35%", fontSize: "20px" }}>页面错误了...</div>
+                        >
+                            <div>
+                                <ImgList ImgListData={imgList} />
+                                <GoodsInfo goodsData={goodsData} />
+                                <img className="detailImg" src='http://1.117.162.125:9090/images/detail/detail1.jpg' />
+                                <img className="promiseImg" src="http://1.117.162.125:9090/images/detail/detail2.jpg" />
+                                <RecommendList recommendList={list} />
+                            </div>
+                        </Scroll>
+                        <Opration_Tabbar goodsData={goodsData} />
+                    </>
+                    : <div style={{ fontWeight: 700, marginLeft: "35%", fontSize: "20px" }}>页面错误了...</div>
+
+
             }
 
         </div>

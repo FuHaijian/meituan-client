@@ -26,7 +26,7 @@ const SelectedGoodsItem = (props) => {
     // 确定商品下标
     let index = selectedGoods.findIndex(item => item.id == goodData.id)
     // 单个商品数量加减
-    const changeShoppingCart = (good, price) => {
+    const changeShoppingCart = (price) => {
         isSelectedAll()
         if (price > 0) {
             // 数量增加
@@ -118,10 +118,10 @@ const SelectedGoodsItem = (props) => {
                 </div>
                 <div className="selectedGoodsItem__goodsInfo_buttom">
                     <img src={SubIcon} className="subButtom"
-                        onClick={() => changeShoppingCart(goodData, -goodData.price)} />
+                        onClick={() => changeShoppingCart(-goodData.price)} />
                     <div className="goodsNum">{goodData.num}</div>
                     <img src={AddIcon} className="addButtom"
-                        onClick={() => changeShoppingCart(goodData, goodData.price)} />
+                        onClick={() => changeShoppingCart(goodData.price)} />
                 </div>
             </div>
         </div>

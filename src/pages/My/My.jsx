@@ -10,12 +10,13 @@ import HeaderComponent from '@/components/my/headerComponent/HeaderComponent'
 import UserBenefits from '@/components/my/userBenefits/UserBenefits'
 import OrdersOprationButtom from '@/components/my/ordersOprationButtom/OrdersOprationButtom'
 import Menubar from '@/components/my/menuBar/myMenuBar'
+import Opration_Tabbar from '@/components/Detail/opration_Tabbar/Opration_Tabbar'
 
 import './My.css'
 
 const My = (props) => {
     // state 
-    const { myPageData, totalAccount, selectedGoods } = props
+    const { myPageData } = props
     const { menuBarData, OrdersOprationButtomData } = myPageData 
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
@@ -23,8 +24,6 @@ const My = (props) => {
     // action 
     const { 
         getMyPageDataDispatch,
-        getSelectedGoodsDisPatch: setCartInfo,
-        getTotalAccountDispatch: setTotalAccount,
         getTabbarIndexDiapatch: setIndex
     } = props
     const handlePullUp = async() => {
@@ -70,14 +69,9 @@ const My = (props) => {
                     <div className="padding">
                         <OrdersOprationButtom ButtomData={OrdersOprationButtomData}/>
                         <Menubar  menuBarData={menuBarData}/>
+                        {/* <Opration_Tabbar  /> */}
                     </div>
-                    <RecommendList 
-                        recommendList={list} 
-                        selectedGoods={selectedGoods}
-                        totalAccount={totalAccount}
-                        setCartInfo={setCartInfo}
-                        setTotalAccount={setTotalAccount}
-                    /> 
+                    <RecommendList recommendList={list} /> 
                 </div>
             </Scroll>
         </div>
@@ -86,9 +80,7 @@ const My = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        myPageData: state.my.myPageData,
-        totalAccount: state.main.totalAccount,
-        selectedGoods: state.main.selectedGoods
+        myPageData: state.my.myPageData
     }
 }
 
@@ -96,12 +88,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getMyPageDataDispatch() {
             dispatch(myActions.getMyPageData())
-        },
-        getSelectedGoodsDisPatch(GoodsList) {
-            dispatch(mainActions.setSelectedGoods(GoodsList))
-        },
-        getTotalAccountDispatch(account) {
-            dispatch(mainActions.setTotalAccount(account))
         },
         getTabbarIndexDiapatch(index) {
             dispatch(mainActions.setIndex(index))

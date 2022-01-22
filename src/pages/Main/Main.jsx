@@ -13,7 +13,6 @@ import SnapUpGoods from '@/components/main/snapUpGoods/SnapUpGoods'
 import SpecialGoods from '@/components/main/specialGoods/SpecialGoods'
 import MenuBar_Top from '@/components/main/menuBar/menuBar_Top/MenuBar_Top'
 import ShoppingCartComponent from '@/components/shoppingCartComponent/ShoppingCartComponent'
-import TipPopup from '../../common/tipPopup/TipPopup'
 
 import './Main.css'
 
@@ -32,7 +31,7 @@ const Main = (props) => {
     const [navBarFixed, setNavBarFixed] = useState(false)
     const [menuBarFixed, setMenuBarFixed] = useState(false)
     // actions 
-    const { getMainDataDispatch } = props
+    const { getMainDataDispatch, setIndex } = props
     const history = useHistory()
     const fetchList = async () => {
         await api.reqlist(page)
@@ -57,6 +56,7 @@ const Main = (props) => {
         if (!mainData.length) {
             getMainDataDispatch()
         }
+        setIndex(0)
     }, [])
     useEffect(() => {
         fetchList()
@@ -125,6 +125,9 @@ const mapStateToDisPatch = (dispatch) => {
     return {
         getMainDataDispatch() {
             dispatch(actions.getMainData())
+        },
+        setIndex(index) {
+            dispatch(actions.setIndex(index))
         }
     }
 }
