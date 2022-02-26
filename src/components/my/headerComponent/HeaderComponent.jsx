@@ -37,14 +37,15 @@ const Container = styled.div`
 
 `
 
-const HeaderComponent = () => {
+const HeaderComponent = (props) => {
+    const { UserLogin } = props
     return (
         <Container>
-            <div className="userImg">
-                <img src={DefaultUserImg} />
+            <div className="userImg" onClick={() => UserLogin()}>
+                <img src={DefaultUserImg}/>
             </div>
-            <div className="userName">
-                R517tehdehj2uh
+            <div className="userName" onClick={() => UserLogin()} >
+                点击登录
             </div>
             <div className="news">
                 <img src={NewsIcon} />

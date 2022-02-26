@@ -4,15 +4,16 @@ import * as myActions from './store/actionCreators'
 import * as mainActions from '../Main/store/actionCreators'
 import { connect } from "react-redux"
 import Scroll from '@/baseUI/scroll'
+import { setUserToken } from "@/api/utils"
 import { forceCheck } from "react-lazyload"
 import RecommendList from '@/components/recommendList/RecommendList'
 import HeaderComponent from '@/components/my/headerComponent/HeaderComponent'
 import UserBenefits from '@/components/my/userBenefits/UserBenefits'
 import OrdersOprationButtom from '@/components/my/ordersOprationButtom/OrdersOprationButtom'
 import Menubar from '@/components/my/menuBar/myMenuBar'
-import Opration_Tabbar from '@/components/Detail/opration_Tabbar/Opration_Tabbar'
 
 import './My.css'
+import { useHistory } from "react-router-dom"
 
 const My = (props) => {
     // state 
@@ -21,6 +22,7 @@ const My = (props) => {
     let [page, setPage] = useState(1)
     const [list, setList] = useState([])
     const [isLoading, setIsLoading] = useState(false)
+    const history = useHistory()
     // action 
     const { 
         getMyPageDataDispatch,
@@ -36,6 +38,9 @@ const My = (props) => {
         setIsLoading(false)
     }
     const handlePullDown = () => {
+    }
+    const userLogin = () => {
+        history.push('/login')
     }
     const getRecommendListData = async() => {
         await reqrecommend(page)
@@ -64,12 +69,11 @@ const My = (props) => {
                 }}
             >
                 <div>
-                    <HeaderComponent />
+                    <HeaderComponent UserLogin={userLogin} />
                     <UserBenefits />
                     <div className="padding">
                         <OrdersOprationButtom ButtomData={OrdersOprationButtomData}/>
-                        <Menubar  menuBarData={menuBarData}/>
-                        {/* <Opration_Tabbar  /> */}
+                        <Menubar menuBarData={menuBarData}/>
                     </div>
                     <RecommendList recommendList={list} /> 
                 </div>

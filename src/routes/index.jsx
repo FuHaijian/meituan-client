@@ -1,18 +1,19 @@
 import React, { lazy, Suspense } from 'react';
 import BlankLayout from '../layouts/BlankLayout';
 import { Redirect } from 'react-router-dom';
+import LoadingIcon from '../common/Loading/loading';
 const Main = lazy(()=> import('../pages/Main/Main'));
 const Classify = lazy(() => import('../pages/Classify/Classify'))
 const ShoppingCart = lazy(() => import('../pages/ShoppingCart/ShoppingCart'))
 const My = lazy(() => import('../pages/My/My'))
 const Search = lazy(() => import('../pages/Search/Search'))
 const Detail = lazy(() => import('../pages/Detail/Detail'))
-// const ErrorPage = lazy(() => import('../pages/ErrorPage/ErrorPage'))
+const Login = lazy(() => import('../pages/Login/login'))
 import Tabbuttom from '../components/tabbuttom/Tabbuttom'
 
 const SuspenseComponent = Component => props => {
     return (
-        <Suspense fallback={null}>
+        <Suspense fallback={<LoadingIcon/>}>
             <Component {...props}></Component>
         </Suspense>
     )
@@ -70,7 +71,12 @@ export default [{
                 },
                
             ]
-        }
+        },
+        {
+            path: '/login',
+            exact: true,
+            component: SuspenseComponent(Login)
+        },
     ]
 }]
 

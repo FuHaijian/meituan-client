@@ -46,21 +46,21 @@ const GoodsListItem = (props) => {
                     setTotalNum(totalNum + 1)
                 }
             } else {
-                good["num"] = 1
-                good["isSelected"] = true
+                good.num = 1
+                good.isSelected = true
                 selectedGoods = [good, ...selectedGoods]
                 setTotalAccount(floatAdd(totalAccount, price))
                 setTotalNum(totalNum + 1)
             }
         } else {
-            selectedGoods[index]["num"]--
+            selectedGoods[index].num--
             // 选中则改变总数 和 总金额
             if (selectedGoods[index].isSelected) {
                 setTotalAccount(floatSub(totalAccount, -price))
                 setTotalNum(totalNum - 1)
             }
             // 判断是否为0,为零则删除商品 
-            if (selectedGoods[index]["num"] == 0) {
+            if (selectedGoods[index].num == 0) {
                 selectedGoods.splice(index, 1)
             }
 

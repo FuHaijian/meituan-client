@@ -28,3 +28,7 @@ export const reqclassifygoodsdata = (page, type) => {
 export const reqgoodsdetail = (id) => {
     return Ajax(`/detail/${id}`)
 }
+
+export const userLogin = (userData) => {
+    return Ajax('home/user/login', {userData})
+} 

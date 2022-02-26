@@ -27,7 +27,6 @@ const SelectedGoodsItem = (props) => {
     let index = selectedGoods.findIndex(item => item.id == goodData.id)
     // 单个商品数量加减
     const changeShoppingCart = (price) => {
-        isSelectedAll()
         if (price > 0) {
             // 数量增加
             selectedGoods[index].num++
@@ -55,6 +54,7 @@ const SelectedGoodsItem = (props) => {
         }
         // 改变单个数量
         setSelectedGoods(selectedGoods)
+        isSelectedAll()
     }
     // 全选矫正
     const isSelectedAll = () => {

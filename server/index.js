@@ -152,6 +152,17 @@ router.get('/detail/:id', async(ctx) => {
         }
     }
 })
+router.get('/home/user/login', async(ctx) => {
+    let { userData }= ctx.request.query
+    let { username, password} = userData
+    console.log(username, password, '9090909');
+    ctx.body = {
+        success: true,
+        data: {
+            token: 'ui'
+        }
+    }
+})
 app
     .use(router.routes())
     .use(router.allowedMethods())

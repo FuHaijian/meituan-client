@@ -1,1 +1,3 @@
 export const CHANGE_MYDATA = 'CHANGE_MYDATA';
+export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const GET_ERRORS = 'GET_ERRORS';
