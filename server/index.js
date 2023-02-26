@@ -4,7 +4,8 @@ const app = new Koa()
 const cors = require('koa2-cors')
 const Mock = require('mockjs')
 const Random = Mock.Random
-const serve = require('koa-static');
+const serve = require('koa-static')
+const jwt = require('jsonwebtoken')
 
 const MainData = require('./Data/mainData/MianData.json')
 const MyData = require('./Data/myPageData/myPageData.json')
@@ -14,7 +15,7 @@ const ExampleData = require('./Data/exampleGoodsData/ExampleGoodsData.json')
 app.use(serve('./public'));
 
 app.use(cors({
-    origin: function(ctx) { //设置允许来自指定域名请求
+    origin: function (ctx) { //设置允许来自指定域名请求
         // if (ctx.url === '/test') {
         return '*'; // 允许来自所有域名请求
         // }
@@ -32,9 +33,9 @@ router.get('/home/main', async (ctx) => {
         data: MainData
     }
 })
-router.get('/home/list', async(ctx) => {
+router.get('/home/list', async (ctx) => {
     // 参数
-    let { limit = 20, page = 1} = ctx.request.query
+    let { limit = 20, page = 1 } = ctx.request.query
     let data;
     let MockData = Mock.mock({
         'list|20': [{
@@ -44,19 +45,19 @@ router.get('/home/list', async(ctx) => {
             'imgsrc': Random.image('168x168'),
             "tradeDescription": "@ctitle(4,7)",
             'id|+1': 4,
-            "price|2-30.2": 2 
+            "price|2-30.2": 2
         }]
     })
-    if(page == 1) {
+    if (page == 1) {
         data = {
             "list": [
                 ExampleData.ExampleGoodsData[0],
-                ExampleData.ExampleGoodsData[1], 
-                ExampleData.ExampleGoodsData[2], 
+                ExampleData.ExampleGoodsData[1],
+                ExampleData.ExampleGoodsData[2],
                 ...MockData.list
             ]
-        } 
-    }else {
+        }
+    } else {
         data = MockData
     }
     ctx.body = {
@@ -64,8 +65,8 @@ router.get('/home/list', async(ctx) => {
         data
     }
 })
-router.get('/home/recommend', async(ctx) => {
-    let { limit = 20, page = 1} = ctx.request.query
+router.get('/home/recommend', async (ctx) => {
+    let { limit = 20, page = 1 } = ctx.request.query
     let data;
     let MockData = Mock.mock({
         'list|20': [{
@@ -73,21 +74,21 @@ router.get('/home/recommend', async(ctx) => {
             "tags|1-2": ["@ctitle(2,3)"],
             'imgsrc': Random.image('140x140'),
             "tradeDescription": "@ctitle(4,7)",
-            "numOfPersonPurchased|500-3000": 500, 
+            "numOfPersonPurchased|500-3000": 500,
             'id|+1': 4,
             "price|2-30.2": 2
         }]
     })
-    if(page == 1) {
+    if (page == 1) {
         data = {
             list: [
                 ExampleData.ExampleGoodsData[0],
-                ExampleData.ExampleGoodsData[1], 
-                ExampleData.ExampleGoodsData[2], 
+                ExampleData.ExampleGoodsData[1],
+                ExampleData.ExampleGoodsData[2],
                 ...MockData.list
-            ] 
+            ]
         }
-    }else {
+    } else {
         data = MockData
     }
     ctx.body = {
@@ -95,14 +96,14 @@ router.get('/home/recommend', async(ctx) => {
         data
     }
 })
-router.get('/home/my', async(ctx) => {
+router.get('/home/my', async (ctx) => {
     ctx.body = {
         success: true,
         data: MyData
     }
 })
-router.get('/home/classify/goodsData', async(ctx) => {
-    const {limit, page, type} = ctx.request.query
+router.get('/home/classify/goodsData', async (ctx) => {
+    const { limit, page, type } = ctx.request.query
     let data;
     let MockData = Mock.mock({
         'list|20': [{
@@ -110,21 +111,21 @@ router.get('/home/classify/goodsData', async(ctx) => {
             "tags|1-2": ["@ctitle(2,3)"],
             'imgsrc': Random.image('100x100'),
             "tradeDescription": "@ctitle(4,7)",
-            "numOfPersonPurchased|500-3000": 500, 
+            "numOfPersonPurchased|500-3000": 500,
             'id|+1': 4,
             "price|2-30.2": 2
         }]
     })
-    if(page == 1) {
+    if (page == 1) {
         data = {
             list: [
                 ExampleData.ExampleGoodsData[0],
-                ExampleData.ExampleGoodsData[1], 
-                ExampleData.ExampleGoodsData[2], 
+                ExampleData.ExampleGoodsData[1],
+                ExampleData.ExampleGoodsData[2],
                 ...MockData.list
             ]
-        } 
-    }else {
+        }
+    } else {
         data = MockData
     }
     ctx.body = {
@@ -132,18 +133,18 @@ router.get('/home/classify/goodsData', async(ctx) => {
         data: data
     }
 })
-router.get('/home/classify', async(ctx) => {
+router.get('/home/classify', async (ctx) => {
     ctx.body = {
         success: true,
         data: ClassifyData
     }
 })
-router.get('/detail/:id', async(ctx) => {
+router.get('/detail/:id', async (ctx) => {
     const { id } = ctx.params
-    if(id < 4) {
+    if (id < 4) {
         ctx.body = {
             success: true,
-            data: ExampleData.ExampleGoodsData[id-1]
+            data: ExampleData.ExampleGoodsData[id - 1]
         }
     } else {
         ctx.body = {
@@ -152,17 +153,48 @@ router.get('/detail/:id', async(ctx) => {
         }
     }
 })
-router.get('/home/user/login', async(ctx) => {
-    let { userData }= ctx.request.query
-    let { username, password} = userData
-    console.log(username, password, '9090909');
-    ctx.body = {
-        success: true,
-        data: {
-            token: 'ui'
-        }
-    }
-})
+// router.get('/home/user/login', async (ctx) => {
+//     let { username, password } = ctx.request.query
+//     const options = {
+//         expiresIn: '10s',   
+//         algorithm: 'HS256'
+//     }
+//     // const curToken = ctx.request.header.authorization;
+//     // const tokenInfo = jwt.decode(curToken)
+//     if (username && password == '123456') {
+//         const token = jwt.sign({ // jwt.sign接受两个参数，第一个参数是对象，对象内为需要加密的内容，第二个参数是加密字符串
+//             id: Math.floor(Math.random()*1000),
+//             username: username
+//         }, 'hello', options)
+//         ctx.body = {
+//             success: true,
+//             data: {
+//                 msg: '登录成功',
+//                 token
+//             }
+//         }
+//     } else {
+//         ctx.body = {
+//             success: false,
+//             data: {
+//                 msg: '用户名或密码错误',
+//                 token: null
+//             }
+//         }
+//         ctx.status = 500
+//     }
+// })
+// router.get('/home/user/register', async (ctx) => {
+//     let { userData } = ctx.request.query
+//     let { username, password } = userData
+//     console.log(username, password, '90909091111');
+//     ctx.body = {
+//         success: true,
+//         data: {
+//             token: 'ui',
+//         }
+//     }
+// })
 app
     .use(router.routes())
     .use(router.allowedMethods())

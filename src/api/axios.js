@@ -1,6 +1,6 @@
 import axios from 'axios';
-// axios.defaults.baseURL = 'http://1.117.162.125:9090';
-axios.defaults.baseURL = 'http://127.0.0.1:9090';
+axios.defaults.baseURL = 'http://101.43.77.31:9090';
+// axios.defaults.baseURL = 'http://127.0.0.1:9090';
 export default function Ajax(url, data = {}, type='GET') {
     return new Promise((resolve, reject) => {
         let Promise;
@@ -16,7 +16,7 @@ export default function Ajax(url, data = {}, type='GET') {
         Promise.then((response) => {
             resolve(response);
         }).catch((error) => {
-            console.error("数据请求异常！", error)
+            console.error("数据请求异常！", error);
         })
     })
 

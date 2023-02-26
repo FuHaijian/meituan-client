@@ -6,23 +6,23 @@
             "tags": ["年货节", "秒杀"],
             "tradeDescription": "品质保证",
             "numOfPersonPurchased": 1679,
-            "imgsrc": "http://127.0.0.1:9090/images/goods1/cover.png",
+            "imgsrc": "http://101.43.77.31:9090/images/goods1/cover.png",
             "imgList": [
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods1/cover.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods1/cover.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods1/cover.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods1/cover.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods1/list1.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods1/list1.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods1/list1.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods1/list1.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods1/list2.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods1/list2.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods1/list2.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods1/list2.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods1/list3.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods1/list3.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods1/list3.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods1/list3.png"
                 }
             ],
             "price": 33.9,
@@ -47,27 +47,27 @@
             "tags": ["年货节"],
             "tradeDescription": "七天无理由退货",
             "numOfPersonPurchased": 1356,
-            "imgsrc": "http://127.0.0.1:9090/images/goods2/cover.png",
+            "imgsrc": "http://101.43.77.31:9090/images/goods2/cover.png",
             "imgList": [
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods2/cover.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods2/cover.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods2/cover.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods2/cover.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods2/list1.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods2/list1.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods2/list1.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods2/list1.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods2/list2.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods2/list2.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods2/list2.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods2/list2.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods2/list3.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods2/list3.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods2/list3.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods2/list3.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods2/list4.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods2/list4.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods2/list4.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods2/list4.png"
                 }
             ],
             "price": 9.9,
@@ -92,27 +92,27 @@
             "tags": ["年货节", "秒杀"],
             "tradeDescription": "七天无理由退货",
             "numOfPersonPurchased": 1534,
-            "imgsrc": "http://127.0.0.1:9090/images/goods3/cover.png",
+            "imgsrc": "http://101.43.77.31:9090/images/goods3/cover.png",
             "imgList": [
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods3/cover.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods3/cover.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods3/cover.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods3/cover.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods3/list1.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods3/list1.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods3/list1.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods3/list1.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods3/list2.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods3/list2.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods3/list2.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods3/list2.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods3/list3.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods3/list3.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods3/list3.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods3/list3.png"
                 },
                 {
-                    "imgsrc": "http://127.0.0.1:9090/images/goods3/list4.png",
-                    "linkUrl": "http://127.0.0.1:9090/images/goods3/list4.png"
+                    "imgsrc": "http://101.43.77.31:9090/images/goods3/list4.png",
+                    "linkUrl": "http://101.43.77.31:9090/images/goods3/list4.png"
                 }
             ],
             "price": 6.9,

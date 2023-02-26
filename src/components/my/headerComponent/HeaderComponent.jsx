@@ -41,10 +41,16 @@ const HeaderComponent = (props) => {
     const { UserLogin } = props
     return (
         <Container>
-            <div className="userImg" onClick={() => UserLogin()}>
+            {/* <div className="userImg" onClick={() => UserLogin()}>
                 <img src={DefaultUserImg}/>
             </div>
             <div className="userName" onClick={() => UserLogin()} >
+                点击登录
+            </div> */}
+            <div className="userImg">
+                <img src={DefaultUserImg}/>
+            </div>
+            <div className="userName">
                 点击登录
             </div>
             <div className="news">

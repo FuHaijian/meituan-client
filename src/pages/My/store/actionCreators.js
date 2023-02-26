@@ -7,7 +7,7 @@ import jwt_decode from 'jwt-decode'
 import { setUserToken } from "@/api/utils"
 // 引入type类型
 import { GET_ERRORS ,SET_CURRENT_USER} from './constants'
-import { userLogin } from '@/api'
+import { userLogin, userRegister } from '@/api'
 
 export const changeMyData = (data) => {
     return {
@@ -17,23 +17,27 @@ export const changeMyData = (data) => {
 }
  
 // 登录信息
-export const loginUser = (userData,history) => dispatch =>{
-    userLogin(userData)
-    .then(res =>{//对返回的token进行解构,并存储
-        const { token } = res.data;
-        localStorage.setItem('jwToken',token)
-        //设置axios的headers token
-        setUserToken(token)
-        // 解析token
-        const decoded = jwt_decode(token)
-        // console.log(decoded)
-        // 解析之后用dispatch分发
-        dispatch(setCurrentUser(decoded))
-    }).catch(err =>{
-         // 在登录息错误的时候用dispatch把信息返回回去
+export const loginUser = (username, password) => dispatch =>{
+    userLogin(username, password)
+    .then( res => {//对返回的token进行解构,并存储
+        console.log(res, 'res');
+        const { token } = res.data.data;
+        if (token) {
+            localStorage.setItem('jwToken',token)
+            setUserToken(token)
+            console.log(token, 'tototo')
+            const decoded = jwt_decode(token)
+            // 解析之后用dispatch分发
+            console.log(decoded, 'codeded');
+            dispatch(setCurrentUser(decoded))
+        } else {
+            throw Error('账号密码或错误')
+        }
+    }).catch(error =>{
+        console.log(error, 'errror');
          dispatch({
             type: GET_ERRORS,
-            payload: err.response.data
+            payload: error.response.data
         })
     })
 }
@@ -43,6 +47,11 @@ export const setCurrentUser = decoded =>{
         type:SET_CURRENT_USER,
         payload:decoded
     }
+}
+
+export const registerUser = async (username, password) => {
+    const res = await userRegister(username, password);
+    console.log(res, 'res');
 }
 
 export const getMyPageData = () => {

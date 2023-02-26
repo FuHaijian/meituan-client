@@ -29,6 +29,9 @@ export const reqgoodsdetail = (id) => {
     return Ajax(`/detail/${id}`)
 }
 
-export const userLogin = (userData) => {
-    return Ajax('home/user/login', {userData})
+export const userLogin = (username, password) => {
+    return Ajax('home/user/login', {username, password})
+} 
+export const userRegister = (username, password) => {
+    return Ajax('home/user/register', {username, password})
 } 

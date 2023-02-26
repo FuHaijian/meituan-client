@@ -1,15 +1,10 @@
-import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
-// 实现ui组件和数据连接
+import React, { useEffect, useState, useCallback } from 'react'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
-// 引入redux中的authAtcion.js/loginUser定义的方法
 import { loginUser } from '../My/store/actionCreators'
-import cx from 'classnames'
-import Captcha from 'react-captcha-code'
-import { useCallback } from 'react'
+// import Captcha from 'react-captcha-code'
+import axios from 'axios'
 
 const Return = styled.div`
     height: 50px;
@@ -31,7 +26,7 @@ const Return = styled.div`
 const Logo = styled.div`
     background-color: #fff;
     position: relative;
-    height: 200px;
+    height: 150px;
     width: 100vw;
     .logo_img {
         height: 120px;
@@ -48,39 +43,50 @@ const Logo = styled.div`
 `
 const UserInfo = styled.div`
     padding: 10px 30px;
-    /* height: 200px; */
     width: 100vw;
     box-sizing: border-box;
     background-color: #fff;
-    display: flex;
-    flex-direction: column;
-    .password, 
-    .userName,
-    .captcha {
-        border: none;
-        outline: 0;
-        height: 50px;
-        margin-top: 20px;
-        line-height: 40px;
-        border-bottom: 2px solid #e5e5e5;
-        font-size: 18px;
-    }
-    .captcha {
-        width: 50vw;
-    }
-    .submit {
-        height: 40px;
-        background-color: #fffce8;
-        color: #dfc466;
-        border: none;
-        margin: 20px 0;
-        border-radius: 20px;
-        box-sizing: border-box;
-        font-size: 18px;
-    }
-    .active {
-        background-color: #f78e0a;
-        color: #fff;
+    .iform {
+        display: flex;
+        flex-direction: column;
+        .password, 
+        .userName,
+        .captcha {
+            border: none;
+            outline: 0;
+            height: 50px;
+            margin-top: 20px;
+            line-height: 40px;
+            border-bottom: 2px solid #e5e5e5;
+            font-size: 18px;
+        }
+        .captchaContent {
+            position: relative;
+        }
+        .captcha {
+            width: 60vw;
+        }
+        .captchaPic {
+            width: 20vw;
+            height: 40px;
+            position: absolute;
+            right: 0;
+            top: 20px;
+        }
+        .submit {
+            height: 40px;
+            background-color: #fffce8;
+            color: #dfc466;
+            border: none;
+            margin: 20px 0;
+            border-radius: 20px;
+            box-sizing: border-box;
+            font-size: 18px;
+        }
+        .active {
+            background-color: #f78e0a;
+            color: #fff;
+        }
     }
 `
 const ToggleButtom = styled.div`
@@ -89,7 +95,7 @@ const ToggleButtom = styled.div`
     margin-left: 30px;
 `
 const Login = (props) => {
-    const { loginUser } = props
+    const { loginUser, isLogin } = props
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [verify, setVerify] = useState('');
@@ -100,9 +106,9 @@ const Login = (props) => {
     }, [type])
 
     const handleChange = useCallback((captcha) => {
-        console.log('captcha:', captcha);
+        // console.log('captcha:', captcha);
         setCaptcha(captcha)
-      }, []);
+    }, []);
     // 登录注册
     const onSubmit = async () => {
         if (!username) {
@@ -113,17 +119,19 @@ const Login = (props) => {
             alert('请输入密码')
             return
         }
-        console.log(username, password, '-=-=-=');
         // 发请求
         try {
             if (type == 'login') { // 登录
-                loginUser({ username, password })
-                    .then(() => {
-                        console.log(data);
-                        alert(data.msg)
-                    })
-                localStorage.setItem('token', data.data.token)
-                history.push('/home/my')
+                await loginUser(username, password)
+                if (!isLogin) {
+                    alert('用户名或密码错误')
+                    alert('无需注册, 用户名随意, 初始密码为123456')
+                } else {
+                    alert('登录成功')
+                    setTimeout(() => {
+                        history.push('/home/my')
+                    }, 1000)
+                }
             } else { // 注册
                 if (!verify) {
                     alert('请输入验证码')
@@ -138,17 +146,22 @@ const Login = (props) => {
                     password
                 })
                 alert(data.msg)
+                alert('opopo')
                 setType('login')
             }
         } catch (error) {
-
+            alert(error)
         }
     }
     const history = useHistory()
     return (
         <div className="loginContainer" style={{ minHeight: "100vh", width: "100vw", backgroundColor: '#fff' }}>
             <Return>
-                <div className="return_icon" onClick={() => history.goBack()}></div>
+                {
+                    type == 'login'
+                        ? <div className="return_icon" onClick={() => history.goBack()}></div>
+                        : <div className="return_icon" onClick={() => setType('login')}></div>
+                }
                 <div className="return_desc"></div>
             </Return>
             <Logo>
@@ -157,54 +170,54 @@ const Login = (props) => {
                 </div>
             </Logo>
             <UserInfo>
-                <input 
-                    type="text"
-                    placeholder='请输入用户名'
-                    className="userName"
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-                <input 
-                    type="password"
-                    placeholder='请输入密码' 
-                    className="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                {
-                    type == 'register' ?
-                        <>
-                            <input
-                                type="text"
-                                placeholder="请输入验证码"
-                                className='captcha'
-                                onChange={(e) => setVerify(e.target.value)}
-                            />
-                            <Captcha charNum={4} onChange={handleChange} />
-                        </> : null
-                }
-                {
-                    type == 'login' 
-                    ?<button className={password && username ? 'active submit' : 'submit'} onClick={() => onSubmit()}>
-                        登录
-                    </button> 
-                    :<button className={verify && password && username ? 'active submit' : 'submit'} onClick={() => onSubmit()}>
-                        注册
-                    </button>
-                }
-                
+                <form className='iform'>
+                    <input
+                        type="text"
+                        placeholder='请输入用户名'
+                        className="userName"
+                        onChange={(e) => setUsername(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder='请输入密码'
+                        className="password"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    {
+                        type == 'register' ?
+                            <div className='captchaContent'>
+                                <input
+                                    type="text"
+                                    placeholder="请输入验证码"
+                                    className='captcha'
+                                    onChange={(e) => setVerify(e.target.value)}
+                                />
+                                {/* <Captcha className='captchaPic' charNum={4} onChange={handleChange} /> */}
+                            </div> : null
+                    }
+                    {
+                        type == 'login'
+                            ? <button className={password && username ? 'active submit' : 'submit'} onClick={() => onSubmit()}>
+                                登录
+                            </button>
+                            : <button className={verify && password && username ? 'active submit' : 'submit'} onClick={() => onSubmit()}>
+                                注册
+                            </button>
+                    }
+                </form>
             </UserInfo>
             {
-                type == 'login' ? 
-                <ToggleButtom onClick={() => setType('register')}>没有账号？去注册</ToggleButtom> : 
-                <ToggleButtom onClick={() => setType('login')}>去登录</ToggleButtom>
+                type == 'login' ?
+                    <ToggleButtom onClick={() => setType('register')}>没有账号？去注册</ToggleButtom> :
+                    <ToggleButtom onClick={() => setType('login')}>去登录</ToggleButtom>
             }
-            
         </div>
     )
 }
 // 将返回的状态转换成属性
-const mapStateToProps = (state) => ({
-    // auth 在reducers下定义的一大的reducers
-    // auth :state.auth,
-    errors: state.errors
-})
+const mapStateToProps = (state) => {
+    return {
+        isLogin: state.my.isAuthenticated
+    }
+}
 export default connect(mapStateToProps, { loginUser })(Login);

@@ -9,6 +9,10 @@
   "dependencies": {
     "axios": "0.19.2",
     "better-scroll": "1.15.2",
+    "browserslist": "^4.21.1",
+    "caniuse-lite": "^1.0.30001365",
+    "classnames": "^2.3.1",
+    "jwt-decode": "^3.1.2",
     "lib-flexible": "^0.3.2",
     "lodash": "^4.17.21",
     "react": "^17.0.2",

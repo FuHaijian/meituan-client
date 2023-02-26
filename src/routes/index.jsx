@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react';
 import BlankLayout from '../layouts/BlankLayout';
 import { Redirect } from 'react-router-dom';
 import LoadingIcon from '../common/Loading/loading';
-const Main = lazy(()=> import('../pages/Main/Main'));
+const Main = lazy(() => import('../pages/Main/Main'));
 const Classify = lazy(() => import('../pages/Classify/Classify'))
 const ShoppingCart = lazy(() => import('../pages/ShoppingCart/ShoppingCart'))
 const My = lazy(() => import('../pages/My/My'))
@@ -13,7 +13,7 @@ import Tabbuttom from '../components/tabbuttom/Tabbuttom'
 
 const SuspenseComponent = Component => props => {
     return (
-        <Suspense fallback={<LoadingIcon/>}>
+        <Suspense fallback={<LoadingIcon />}>
             <Component {...props}></Component>
         </Suspense>
     )
@@ -21,21 +21,20 @@ const SuspenseComponent = Component => props => {
 
 export default [{
     component: BlankLayout,
-    routes:[
+    routes: [
         {
-            path:'/',
+            path: '/',
             exact: true,
-            render: () => < Redirect to = { "/home" }/>,
+            render: () => < Redirect to={"/home"} />,
         },
         {
-            path:'/home',
+            path: '/home',
             component: Tabbuttom,
             routes: [
                 {
                     path: '/home',
                     exact: true,
-                    render: () => < Redirect to = { "/home/main" }
-                    />,
+                    render: () => <Redirect to={"/home/main"} />,
                 },
                 {
                     path: '/home/main',
@@ -69,7 +68,7 @@ export default [{
                     path: '/detail/:type',
                     component: SuspenseComponent(Detail)
                 },
-               
+
             ]
         },
         {

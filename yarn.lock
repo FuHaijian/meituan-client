@@ -368,26 +368,25 @@
   dependencies:
     "babel-runtime" "^6.0.0"
 
-"browserslist@^4.17.5":
-  "integrity" "sha512-u2tbbG5PdKRTUoctO3NBD8FQ5HdPh1ZXPHzp1rwaa5jTc+RV9/+RlWiAIKmjRPQF+xbGM9Kklj5bZQFa2s/38A=="
-  "resolved" "https://registry.npmmirror.com/browserslist/download/browserslist-4.19.1.tgz"
-  "version" "4.19.1"
+"browserslist@^4.17.5", "browserslist@^4.21.1", "browserslist@>= 4.21.0":
+  "integrity" "sha512-Nq8MFCSrnJXSc88yliwlzQe3qNe3VntIjhsArW9IJOEPSHNx23FalwApUVbzAWABLhYJJ7y8AynWI/XM8OdfjQ=="
+  "resolved" "https://registry.npmmirror.com/browserslist/-/browserslist-4.21.1.tgz"
+  "version" "4.21.1"
   dependencies:
-    "caniuse-lite" "^1.0.30001286"
-    "electron-to-chromium" "^1.4.17"
-    "escalade" "^3.1.1"
-    "node-releases" "^2.0.1"
-    "picocolors" "^1.0.0"
+    "caniuse-lite" "^1.0.30001359"
+    "electron-to-chromium" "^1.4.172"
+    "node-releases" "^2.0.5"
+    "update-browserslist-db" "^1.0.4"
 
 "camelize@^1.0.0":
   "integrity" "sha1-FkpUg+Yw+kMh5a8HAg5TGDGyYJs="
   "resolved" "https://registry.npm.taobao.org/camelize/download/camelize-1.0.0.tgz"
   "version" "1.0.0"
 
-"caniuse-lite@^1.0.30001286":
-  "integrity" "sha512-WfrtPEoNSoeATDlf4y3QvkwiELl9GyPLISV5GejTbbQRtQx4LhsXmc9IQ6XCL2d7UxCyEzToEZNMeqR79OUw8Q=="
-  "resolved" "https://registry.npmmirror.com/caniuse-lite/download/caniuse-lite-1.0.30001296.tgz"
-  "version" "1.0.30001296"
+"caniuse-lite@^1.0.30001359", "caniuse-lite@^1.0.30001365":
+  "integrity" "sha512-VDQZ8OtpuIPMBA4YYvZXECtXbddMCUFJk1qu8Mqxfm/SZJNSr1cy4IuLCOL7RJ/YASrvJcYg1Zh+UEUQ5m6z8Q=="
+  "resolved" "https://registry.npmmirror.com/caniuse-lite/-/caniuse-lite-1.0.30001365.tgz"
+  "version" "1.0.30001365"
 
 "chalk@^2.0.0":
   "integrity" "sha1-zUJUFnelQzPPVBpJEIwUMrRMlCQ="
@@ -397,6 +396,11 @@
     "ansi-styles" "^3.2.1"
     "escape-string-regexp" "^1.0.5"
     "supports-color" "^5.3.0"
+
+"classnames@^2.3.1":
+  "integrity" "sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA=="
+  "resolved" "https://registry.npmmirror.com/classnames/-/classnames-2.3.1.tgz"
+  "version" "2.3.1"
 
 "color-convert@^1.9.0":
   "integrity" "sha1-u3GFBpDh8TZWfeYp0tVHHe2kweg="
@@ -462,10 +466,10 @@
   dependencies:
     "ssr-window" "^2.0.0"
 
-"electron-to-chromium@^1.4.17":
-  "integrity" "sha512-MbLlbF39vKrXWlFEFpCgDHwdlz4O3LmHM5W4tiLRHjSmEUXjJjz8sZkMgWgvYxlZw3N1iDTmCEtOkkESb5TMCg=="
-  "resolved" "https://registry.npmmirror.com/electron-to-chromium/download/electron-to-chromium-1.4.36.tgz"
-  "version" "1.4.36"
+"electron-to-chromium@^1.4.172":
+  "integrity" "sha512-YoVeFrGd/7ROjz4R9uPoND1K/hSRC/xADy9639ZmIZeJSaBnKdYx3I6LMPsY7CXLpK7JFgKQVzeZ/dk2br6Eaw=="
+  "resolved" "https://registry.npmmirror.com/electron-to-chromium/-/electron-to-chromium-1.4.186.tgz"
+  "version" "1.4.186"
 
 "esbuild-windows-64@0.13.15":
   "integrity" "sha512-9aMsPRGDWCd3bGjUIKG/ZOJPKsiztlxl/Q3C1XDswO6eNX/Jtwu4M+jb6YDH9hRSUflQWX0XKAfWzgy5Wk54JQ=="
@@ -496,8 +500,8 @@
     "esbuild-windows-arm64" "0.13.15"
 
 "escalade@^3.1.1":
-  "integrity" "sha1-2M/ccACWXFoBdLSoLqpcBVJ0LkA="
-  "resolved" "https://registry.npm.taobao.org/escalade/download/escalade-3.1.1.tgz"
+  "integrity" "sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw=="
+  "resolved" "https://registry.npmmirror.com/escalade/-/escalade-3.1.1.tgz"
   "version" "3.1.1"
 
 "escape-string-regexp@^1.0.5":
@@ -592,6 +596,11 @@
   dependencies:
     "minimist" "^1.2.5"
 
+"jwt-decode@^3.1.2":
+  "integrity" "sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A=="
+  "resolved" "https://registry.npmmirror.com/jwt-decode/-/jwt-decode-3.1.2.tgz"
+  "version" "3.1.2"
+
 "lib-flexible@^0.3.2":
   "integrity" "sha1-BvWnSDIxSi01wSA5vJw8otrqpCY="
   "resolved" "https://registry.npm.taobao.org/lib-flexible/download/lib-flexible-0.3.2.tgz"
@@ -637,10 +646,10 @@
   "resolved" "https://registry.npmmirror.com/nanoid/download/nanoid-3.1.30.tgz"
   "version" "3.1.30"
 
-"node-releases@^2.0.1":
-  "integrity" "sha1-PR05XyBPHy8ppUNYuftnh2WtL8U="
-  "resolved" "https://registry.npmmirror.com/node-releases/download/node-releases-2.0.1.tgz?cache=0&sync_timestamp=1634806914912&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fnode-releases%2Fdownload%2Fnode-releases-2.0.1.tgz"
-  "version" "2.0.1"
+"node-releases@^2.0.5":
+  "integrity" "sha512-PiVXnNuFm5+iYkLBNeq5211hvO38y63T0i2KKh2KnUs3RpzJ+JtODFjkD8yjLwnDkTYF1eKXheUwdssR+NRZdg=="
+  "resolved" "https://registry.npmmirror.com/node-releases/-/node-releases-2.0.6.tgz"
+  "version" "2.0.6"
 
 "object-assign@^4.1.1":
   "integrity" "sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM="
@@ -913,6 +922,14 @@
   "integrity" "sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4="
   "resolved" "https://registry.nlark.com/to-fast-properties/download/to-fast-properties-2.0.0.tgz?cache=0&sync_timestamp=1628418893613&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fto-fast-properties%2Fdownload%2Fto-fast-properties-2.0.0.tgz"
   "version" "2.0.0"
+
+"update-browserslist-db@^1.0.4":
+  "integrity" "sha512-jnmO2BEGUjsMOe/Fg9u0oczOe/ppIDZPebzccl1yDWGLFP16Pa1/RM5wEoKYPG2zstNcDuAStejyxsOuKINdGA=="
+  "resolved" "https://registry.npmmirror.com/update-browserslist-db/-/update-browserslist-db-1.0.4.tgz"
+  "version" "1.0.4"
+  dependencies:
+    "escalade" "^3.1.1"
+    "picocolors" "^1.0.0"
 
 "value-equal@^1.0.1":
   "integrity" "sha1-Hgt5THNMXAyt4XnEN9NW2TGjTWw="
