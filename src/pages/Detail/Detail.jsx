@@ -90,8 +90,8 @@ const Detail = (props) => {
                             <div>
                                 <ImgList ImgListData={imgList} />
                                 <GoodsInfo goodsData={goodsData} />
-                                <img className="detailImg" src='http://101.43.77.31:9090/images/detail/detail1.jpg' />
-                                <img className="promiseImg" src="http://101.43.77.31:9090/images/detail/detail2.jpg" />
+                                <img className="detailImg" src='http://localhost:9090/images/detail/detail1.jpg' />
+                                <img className="promiseImg" src="http://localhost:9090/images/detail/detail2.jpg" />
                                 <RecommendList recommendList={list} />
                             </div>
                         </Scroll>
