@@ -7,7 +7,7 @@ import NavBar from '@/components/Detail/navBar/NavBar'
 import RecommendList from '@/components/recommendList/RecommendList'
 import ImgList from '@/components/Detail/imgList/ImgList'
 import GoodsInfo from '@/components/Detail/goodsInfo/GoodsInfo'
-import Opration_Tabbar from '../../components/detail/opration_Tabbar/Opration_Tabbar.jsx'
+import Opration_Tabbar from '@/components/detail/opration_Tabbar/Opration_Tabbar'
 
 import './Detail.css'
 
@@ -90,8 +90,8 @@ const Detail = (props) => {
                             <div>
                                 <ImgList ImgListData={imgList} />
                                 <GoodsInfo goodsData={goodsData} />
-                                <img className="detailImg" src='http://localhost:9090/images/detail/detail1.jpg' />
-                                <img className="promiseImg" src="http://localhost:9090/images/detail/detail2.jpg" />
+                                <img className="detailImg" src='https://mt-server-4zrtdulat-fuhaijians-projects.vercel.app/images/detail/detail1.jpg' />
+                                <img className="promiseImg" src="https://mt-server-4zrtdulat-fuhaijians-projects.vercel.app/images/detail/detail2.jpg" />
                                 <RecommendList recommendList={list} />
                             </div>
                         </Scroll>

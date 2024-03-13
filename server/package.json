@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@vercel/node": "^3.0.19",
+    "@vercel/static-build": "^2.4.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.13.4",
     "koa-router": "^10.1.1",
