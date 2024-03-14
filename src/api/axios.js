@@ -1,5 +1,5 @@
 import axios from 'axios';
-axios.defaults.baseURL = 'https://mt-server-4zrtdulat-fuhaijians-projects.vercel.app';
+axios.defaults.baseURL = 'http://118.31.239.198:9090';
 // axios.defaults.baseURL = 'http://127.0.0.1:9090';
 export default function Ajax(url, data = {}, type='GET') {
     return new Promise((resolve, reject) => {

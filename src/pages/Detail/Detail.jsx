@@ -90,8 +90,8 @@ const Detail = (props) => {
                             <div>
                                 <ImgList ImgListData={imgList} />
                                 <GoodsInfo goodsData={goodsData} />
-                                <img className="detailImg" src='https://mt-server-4zrtdulat-fuhaijians-projects.vercel.app/images/detail/detail1.jpg' />
-                                <img className="promiseImg" src="https://mt-server-4zrtdulat-fuhaijians-projects.vercel.app/images/detail/detail2.jpg" />
+                                <img className="detailImg" src='http://118.31.239.198:9090/images/detail/detail1.jpg' />
+                                <img className="promiseImg" src="http://118.31.239.198:9090/images/detail/detail2.jpg" />
                                 <RecommendList recommendList={list} />
                             </div>
                         </Scroll>

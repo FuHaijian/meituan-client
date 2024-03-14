@@ -19,7 +19,7 @@ app.use(serve('./public'));
 //         // if (ctx.url === '/test') {
 //         return 'http://localhost:3000'; // 允许来自所有域名请求
 //         // }
-//         // return 'https://mt-server-4zrtdulat-fuhaijians-projects.vercel.app'; //只允许http://localhost:8080这个域名的请求
+//         // return 'http://118.31.239.198:9090'; //只允许http://localhost:8080这个域名的请求
 //     },
 //     maxAge: 5, //指定本次预检请求的有效期，单位为秒。
 //     credentials: true, //是否允许发送Cookie
