@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import { loginUser } from '../My/store/actionCreators'
-// import Captcha from 'react-captcha-code'
+import Captcha from 'react-captcha-code'
 import axios from 'axios'
 
 const Return = styled.div`
@@ -124,9 +124,9 @@ const Login = (props) => {
             if (type == 'login') { // 登录
                 await loginUser(username, password)
                 if (!isLogin) {
-                    alert('用户名或密码错误')
-                    alert('无需注册, 用户名随意, 初始密码为123456')
-                } else {
+                //     alert('用户名或密码错误')
+                //     alert('无需注册, 用户名随意, 初始密码为123456')
+                // } else {
                     alert('登录成功')
                     setTimeout(() => {
                         history.push('/home/my')
@@ -192,7 +192,7 @@ const Login = (props) => {
                                     className='captcha'
                                     onChange={(e) => setVerify(e.target.value)}
                                 />
-                                {/* <Captcha className='captchaPic' charNum={4} onChange={handleChange} /> */}
+                                <Captcha className='captchaPic' charNum={4} onChange={handleChange} />
                             </div> : null
                     }
                     {

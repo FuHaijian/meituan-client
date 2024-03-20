@@ -19,22 +19,18 @@ export const changeMyData = (data) => {
 // 登录信息
 export const loginUser = (username, password) => dispatch =>{
     userLogin(username, password)
-    .then( res => {//对返回的token进行解构,并存储
-        console.log(res, 'res');
+    .then(res => {//对返回的token进行解构,并存储
         const { token } = res.data.data;
         if (token) {
             localStorage.setItem('jwToken',token)
             setUserToken(token)
-            console.log(token, 'tototo')
             const decoded = jwt_decode(token)
             // 解析之后用dispatch分发
-            console.log(decoded, 'codeded');
             dispatch(setCurrentUser(decoded))
         } else {
             throw Error('账号密码或错误')
         }
     }).catch(error =>{
-        console.log(error, 'errror');
          dispatch({
             type: GET_ERRORS,
             payload: error.response.data

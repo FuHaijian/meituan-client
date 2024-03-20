@@ -154,48 +154,50 @@ router.get('/detail/:id', async (ctx) => {
         }
     }
 })
-// router.get('/home/user/login', async (ctx) => {
-//     let { username, password } = ctx.request.query
-//     const options = {
-//         expiresIn: '10s',   
-//         algorithm: 'HS256'
-//     }
-//     // const curToken = ctx.request.header.authorization;
-//     // const tokenInfo = jwt.decode(curToken)
-//     if (username && password == '123456') {
-//         const token = jwt.sign({ // jwt.sign接受两个参数，第一个参数是对象，对象内为需要加密的内容，第二个参数是加密字符串
-//             id: Math.floor(Math.random()*1000),
-//             username: username
-//         }, 'hello', options)
-//         ctx.body = {
-//             success: true,
-//             data: {
-//                 msg: '登录成功',
-//                 token
-//             }
-//         }
-//     } else {
-//         ctx.body = {
-//             success: false,
-//             data: {
-//                 msg: '用户名或密码错误',
-//                 token: null
-//             }
-//         }
-//         ctx.status = 500
-//     }
-// })
-// router.get('/home/user/register', async (ctx) => {
-//     let { userData } = ctx.request.query
-//     let { username, password } = userData
-//     console.log(username, password, '90909091111');
-//     ctx.body = {
-//         success: true,
-//         data: {
-//             token: 'ui',
-//         }
-//     }
-// })
+router.get('/home/user/login', async (ctx) => {
+    let { username, password } = ctx.request.query
+    console.log("🚀 ~ router.get ~ username, password:", username, password)
+    const options = {
+        expiresIn: '10s',   
+        algorithm: 'HS256'
+    }
+    // const curToken = ctx.request.header.authorization;
+    // const tokenInfo = jwt.decode(curToken)
+    if (username && password == '123456') {
+        const token = jwt.sign({ // jwt.sign接受两个参数，第一个参数是对象，对象内为需要加密的内容，第二个参数是加密字符串
+            id: Math.floor(Math.random()*1000),
+            username: username
+        }, 'hello', options)
+        console.log("🚀 ~ router.get ~ token:", token)
+        ctx.body = {
+            success: true,
+            data: {
+                msg: '登录成功',
+                token
+            }
+        }
+    } else {
+        ctx.body = {
+            success: false,
+            data: {
+                msg: '用户名或密码错误',
+                token: null
+            }
+        }
+        ctx.status = 500
+    }
+})
+router.get('/home/user/register', async (ctx) => {
+    let { userData } = ctx.request.query
+    let { username, password } = userData
+    console.log(username, password, '90909091111');
+    ctx.body = {
+        success: true,
+        data: {
+            token: 'ui',
+        }
+    }
+})
 app
     .use(router.routes())
     .use(router.allowedMethods())

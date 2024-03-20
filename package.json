@@ -7,6 +7,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@alex_xu/react-slider-vertify": "^1.2.0",
     "axios": "0.19.2",
     "better-scroll": "1.15.2",
     "browserslist": "^4.21.1",
@@ -16,6 +17,7 @@
     "lib-flexible": "^0.3.2",
     "lodash": "^4.17.21",
     "react": "^17.0.2",
+    "react-captcha-code": "^1.0.7",
     "react-dom": "^17.0.2",
     "react-lazyload": "^3.2.0",
     "react-redux": "^7.2.6",

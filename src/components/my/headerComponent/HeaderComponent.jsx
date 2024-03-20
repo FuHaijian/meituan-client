@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useHistory } from 'react-router-dom'
 import NewsIcon from '@/assets/navbarImg/news.png'
 import DefaultUserImg from '@/assets/images/defaultUserImg.png'
 
@@ -39,6 +40,8 @@ const Container = styled.div`
 
 const HeaderComponent = (props) => {
     const { UserLogin } = props
+    const history = useHistory()
+
     return (
         <Container>
             {/* <div className="userImg" onClick={() => UserLogin()}>
@@ -50,7 +53,7 @@ const HeaderComponent = (props) => {
             <div className="userImg">
                 <img src={DefaultUserImg}/>
             </div>
-            <div className="userName">
+            <div className="userName" onClick={() => history.push('/login')} >
                 点击登录
             </div>
             <div className="news">
